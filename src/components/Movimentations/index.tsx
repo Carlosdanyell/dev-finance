@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { View, Text } from 'react-native';
+import AuthContext from '../../contexts/auth';
 import Toast from 'react-native-toast-message';
 import axios from 'axios';
-const baseUrl = 'http:192.168.0.10:3334';
-
+import { baseUrl } from '../../utils/route';
 import { HeaderText } from '../HeaderText';
 import { MoviCard, RegisterProps} from '../MoviCard';
 import { NullComponent } from '../NullComponent';
@@ -18,12 +18,15 @@ interface Props {
 }
 
 export function Movimentations({refresh, title, subtitle}: Props) {
+
+  const { userAccountData } = useContext(AuthContext);
+
  const [ register, setRegister ] = useState<RegisterProps[]>([])
 
 
   async function loadRegisters (){
     try{
-      await axios(`${baseUrl}/user/42f67476-bc7d-4ebf-9b55-a4718acf2a25/registers`).then(response =>{
+      await axios(`${baseUrl}/user/${userAccountData.id}/registers`).then(response =>{
         setRegister(response.data)
       })
     }catch(err){

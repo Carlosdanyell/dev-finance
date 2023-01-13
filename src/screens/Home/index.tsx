@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView, View, TouchableHighlight,} from 'react-native';
-import { useRoute } from '@react-navigation/native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { routeParams } from '../../@types/@navigation';
 import { FocusAwareStatusBar } from '../../components/StatusBar';
 import { HeaderScreen } from '../../components/HeaderScreen'
@@ -35,7 +34,7 @@ export function Home() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <FocusAwareStatusBar barStyle="light-content" backgroundColor="transparent"  translucent/>
+      <FocusAwareStatusBar barStyle="light-content" backgroundColor={THEME.COLORS.PRIMARY}  translucent/>
       <ScrollView showsVerticalScrollIndicator={false} >
 
         <HeaderScreen iconsVisible={true} changeVisible={handleVisibility}/>

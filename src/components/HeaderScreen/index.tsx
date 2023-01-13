@@ -1,9 +1,8 @@
-import { View, Text, TouchableOpacity} from 'react-native';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import AuthContext from '../../contexts/auth';
+import { View, Text, TouchableOpacity, Image} from 'react-native';
 import { EyeClosed,Eye, MoonStars, Question, User} from 'phosphor-react-native'
-
 import { ButtonIcon } from '../ButtonIcon';
-
 import { styles } from './styles';
 import { THEME } from '../../../theme';
 
@@ -14,6 +13,9 @@ interface Props {
 }
 
 export function HeaderScreen({changeVisible, iconsVisible} : Props) {
+
+    const { userSocialAccount } = useContext(AuthContext);
+
     const [visibility, setVisibility] = useState<boolean>(true);
 
     const handleVisibility = () => {
@@ -26,9 +28,10 @@ export function HeaderScreen({changeVisible, iconsVisible} : Props) {
     <View style={styles.container}>
         <View style={styles.contentHeader}>
             <ButtonIcon background={THEME.COLORS.PRIMARY_LIGTH}>
-                <User 
-                    color={THEME.COLORS.TEXT_DARK}
-                    size={27}        
+               <Image
+                  style={styles.userImage}
+                  source={{uri: userSocialAccount?.photoUrl,}}
+                  resizeMode={'cover'}
                 />
             </ButtonIcon>
             <View style={styles.containerIconsHeader}>
@@ -59,7 +62,7 @@ export function HeaderScreen({changeVisible, iconsVisible} : Props) {
         </View>
         {iconsVisible?         
         <Text style={styles.userName}>
-           Olá, Carlos
+           Olá, {userSocialAccount?.firstName}
         </Text> : null}
 
     </View>

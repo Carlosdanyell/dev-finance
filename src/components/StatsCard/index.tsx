@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { View, Text} from 'react-native';
+import AuthContext from '../../contexts/auth';
 import { VictoryPie } from 'victory-native'
 import axios from 'axios';
-const baseUrl = 'http:192.168.0.10:3334';
-
+import { baseUrl } from '../../utils/route';
 import { HeaderText } from '../HeaderText';
 import { categoriesExpenses} from '../../utils/categories'
 import { NullComponent } from '../NullComponent';
@@ -15,11 +15,14 @@ interface Props {
 };
 
 export function StatsCard({ refresh } : Props) {
+
+  const { userAccountData } = useContext(AuthContext);
+
   const [ register, setRegister] = useState<RegisterProps[]>([]);
 
   useEffect(() => {
     try{
-      axios(`${baseUrl}/user/42f67476-bc7d-4ebf-9b55-a4718acf2a25/registers`).then(response =>{
+      axios(`${baseUrl}/user/${userAccountData.id}/registers`).then(response =>{
         setRegister(response.data);
       })
 

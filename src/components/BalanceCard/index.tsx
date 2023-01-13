@@ -1,15 +1,12 @@
 import { View, Text } from 'react-native';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext} from 'react';
+import AuthContext from '../../contexts/auth';
 import { formatNumber } from '../../../node_modules/react-native-currency-input';
-
 import axios from 'axios';
-const baseUrl = 'http:192.168.0.10:3334';
-
+import { baseUrl } from '../../utils/route';
 import { ArrowUp, ArrowDown } from 'phosphor-react-native'
-
 import { CashHidden } from './CashHidden'
 import { RegisterProps} from '../MoviCard';
-
 import { styles } from './styles';
 import { THEME } from '../../../theme';
 
@@ -22,12 +19,14 @@ interface Props {
 
 
 export function BalanceCard({visible, refresh} : Props) {
+    
+    const { userAccountData } = useContext(AuthContext);
 
     const [ register, setRegister ] = useState<RegisterProps[]>([])
 
     async function loadRegisters (){
         try{
-          await axios(`${baseUrl}/user/42f67476-bc7d-4ebf-9b55-a4718acf2a25/registers`).then(response =>{
+          await axios(`${baseUrl}/user/${userAccountData.id}/registers`).then(response =>{
             setRegister(response.data)
             
           })

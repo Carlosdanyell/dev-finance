@@ -1,13 +1,14 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Keyboard, ScrollView, Alert} from 'react-native';
+import React, { useState, useRef, useContext } from 'react';
+import { View, Text, TextInput, TouchableOpacity, TouchableNativeFeedback, KeyboardAvoidingView, Keyboard, ScrollView, Alert} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import AuthContext from '../../contexts/auth';
 import { Controller, useForm, FieldError} from "react-hook-form";
 import CurrencyInput from 'react-native-currency-input';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigation } from '@react-navigation/native';
 import * as yup from "yup";
 import axios from 'axios';
-const baseUrl = 'http:192.168.0.10:3334';
+import { baseUrl } from '../../utils/route';
 import { Entypo } from '@expo/vector-icons'
 import { FocusAwareStatusBar } from '../../components/StatusBar';
 import CustomSwitch  from '../../components/CustomSwitch';
@@ -48,33 +49,76 @@ const schema = yup.object({
 
 
 export function Register() {
+
+  const { userAccountData } = useContext(AuthContext);
+
   const { control, handleSubmit, formState: {errors}, reset} = useForm<dataModel>({
     resolver: yupResolver(schema)
   });
 
-  const [ state ,setState] = useState<boolean>(false)
+  const [ state ,setState] = useState<boolean>(false);
+
+  const [ sucessToRegister ,setSucessToRegister] = useState<boolean>(false);
 
   const [ type, setType ] = useState<string>('entrada');
   
-  const [ indiceSelected, setIndiceSelected] = useState<number>(0)
+  const [ indiceSelected, setIndiceSelected] = useState<number>(0);
 
-  const [ category, setCategory] = useState<PropsCategory>(categoriesIncomes[0])
+  const [ category, setCategory] = useState<PropsCategory>(categoriesIncomes[0]);
 
   const navigation = useNavigation();
   
 
+  function handleGoBack(){
+    navigation.goBack()
+  };
+
+  async function handleDataRegister (data: dataModel){
+
+    data.typeRegister = type;
+    data.category = category.title
+
+    try {
+
+      await axios.post(`${baseUrl}/user/${userAccountData.id}/registers`, {
+        typeRegister: data.typeRegister,
+        description: data.description,
+        category: data.category,
+        value: data.value.toString()
+      }); 
+
+      setSucessToRegister(true)
+      setState(!state);
+
+    } catch(err){
+
+      setSucessToRegister(false)
+      setState(!state);
+        console.log(err);
+    }
+   
+    reset()
+  };
+
+
   const onSelectSwitch = (value: number) => {
-    setTimeout(() => {
+
       if(value === 2){
-        setType('saida')
+        if(type === 'saida'){
+          return
+        }
+        setType('saida');
         reset()
         setCategory(categoriesExpenses[0])
 
         if(category != categoriesExpenses[0]){
           return category
         }
-      }else{
-        setType('entrada')
+      }else if(value === 1){
+        if(type === 'entrada'){
+          return
+        }
+        setType('entrada');
         reset()
         setCategory(categoriesIncomes[0])
 
@@ -82,90 +126,44 @@ export function Register() {
           return category
         }
       }
-    },1000)
+
   };
 
 
-   async function handleDataRegister (data: dataModel){
 
-    data.typeRegister = type;
-    data.category = category.title
-
-    try {
-
-      await axios.post(`${baseUrl}/user/42f67476-bc7d-4ebf-9b55-a4718acf2a25/registers`, {
-        typeRegister: data.typeRegister,
-        description: data.description,
-        category: data.category,
-        value: data.value.toString()
-      }); 
-    } catch(err){
-      
-        console.log(err);
-        Alert.alert(
-          "Ops...",
-           `Houve algum erro ao registrar a ${data.typeRegister} ...`,
-          [
-            { text: "OK", onPress: () => navigation.navigate('home', {state}) }
-          ]
-        );
-    }
-    
-    setState(!state)
-    reset()
-  };
-
-  function handleGoBack(){
-    navigation.goBack()
-  };
-
-
-  var element : any = renderTypeCategory(type).find(item => item == category)
-  var formatedArrayCategories = changePosition(renderTypeCategory(type) , indiceSelected, 0);
-  
-
-  useEffect(() => {
-    setIndiceSelected(renderTypeCategory(type).indexOf(element))
-  },[category])
-
-  function handleCategory(par: PropsCategory){
-    if(par == category){
-      return false
-    }else{
-      setCategory(par)
-    }
-
-    onClose()
-
-    element = renderTypeCategory(type).find(item => item == category)
-    return setIndiceSelected(renderTypeCategory(type).indexOf(element)) 
-  };
-  
-
-  function renderTypeCategory (par: String){
-    if(par == 'entrada'){
-      return categoriesIncomes
-    }else{
-      return categoriesExpenses
-    }
-  };
-
-  function changePosition(arr: any, from: number, to : number) {
-    arr.splice(to, 0, arr.splice(from, 1)[0]);
-    return arr;
-  };
-
-  
   const modalizeRef = useRef<Modalize>(null);
 
     const onOpen = () => {
       modalizeRef.current?.open();
       Keyboard.dismiss()
     };
+
     const onClose = () => {
       modalizeRef.current?.close();
     };
-    
+
+
+
+    function handleCategory(par: PropsCategory){
+      if(par == category){
+        return false
+      }else{
+        setCategory(par)
+      }
+  
+      onClose()
+    };
+
+//   const reorderArray = (arr: any, index: number): any[] => {
+//     const newArray = [...arr];
+//     const targetElement = newArray.splice(index, 1)[0];
+//     newArray.unshift(targetElement);
+//     return newArray;
+// }
+
+//   var formatedArrayCategoriesIncomes = reorderArray(categoriesIncomes , indiceSelected);
+
+
   return (
     <SafeAreaView>
       <FocusAwareStatusBar barStyle="dark-content" backgroundColor={THEME.COLORS.BACKGROUND_800_LIGHT } translucent/>
@@ -207,7 +205,7 @@ export function Register() {
                   subtitle={`Descreva os detalhes da ${type == 'entrada' ? 'receita' : 'despesa'}`}
                 />
               </View>
-
+              
               <View style={styles.mainContent}>
                 <View style={styles.containerInput}>
                   <Text style={styles.labelText}>
@@ -237,19 +235,17 @@ export function Register() {
                   </Text>
                   <TouchableOpacity onPress={onOpen}>
                   <View style={styles.input}>
-                    
-                        <View style={[styles.category,{borderColor: category?.color}]}>
-                        
+                      <View style={[styles.category,{borderColor: category?.color}]}>
+                      
                         {category?.icon(22 ,category?.color)}
-                          <Text style={{marginLeft: 15, alignSelf: 'center'}}>{category?.title}</Text>
-                        </View>
-                        <View style={{flex: 1,alignItems: 'flex-end',paddingRight: 12}}>
-                          <CaretRight
-                            size={21}
-                            color={category?.color}
-                          />
-                        </View>
-                    
+                        <Text style={{marginLeft: 15, alignSelf: 'center'}}>{category?.title}</Text>
+                      </View>
+                      <View style={{flex: 1,alignItems: 'flex-end',paddingRight: 12}}>
+                        <CaretRight
+                          size={21}
+                          color={category?.color}
+                        />
+                      </View>
                   </View>
                   </TouchableOpacity>
                 </View>
@@ -296,19 +292,27 @@ export function Register() {
                 </TouchableOpacity>
                 
               </View>
+            
             </View>
           </ScrollView> 
         </View>
       </KeyboardAvoidingView>
 
       <ModalAlert
-        title={'Registrado!'}
-        subtitle={`Sua ${type == 'entrada' ? 'entrada' : 'saída'} foi registrada com sucesso`}
+        title={
+          sucessToRegister ? 'Registrado!' : 'Erro ao registrar'
+        }
+        subtitle={
+          sucessToRegister ? `Sua ${type == 'entrada' ? 'entrada' : 'saída'} foi registrada com sucesso` 
+          : `Houve um erro ao registrar a ${type == 'entrada' ? 'entrada' : 'saída'}`
+        }
         statusBarTranslucent
         transparent
         visible={state}
+        colorButton={sucessToRegister? THEME.COLORS.SUCCESS: THEME.COLORS.ALERT}
         buttonPatternFunc={() => {
-          setState(!state)
+
+          setState(!state);
 
           setTimeout(() => {
             navigation.navigate('home', {state})
@@ -328,9 +332,9 @@ export function Register() {
           }
         >
             <View>
-            {
-              formatedArrayCategories.map((categories: any) => (
-                <TouchableOpacity 
+            {type == 'entrada'?
+              categoriesIncomes.map((categories: PropsCategory) => (
+                <TouchableNativeFeedback 
                   key={categories.id}
                   onPress={()=> handleCategory(categories) }
                 >
@@ -352,7 +356,32 @@ export function Register() {
                       }
                     </View>
                   </View>
-                </TouchableOpacity>
+                </TouchableNativeFeedback>
+              )):
+              categoriesExpenses.map((categories: PropsCategory) => (
+                <TouchableNativeFeedback 
+                  key={categories.id}
+                  onPress={()=> handleCategory(categories) }
+                >
+                  <View style={styles.cardCategory}>
+                    <View style={[styles.iconCategory,{backgroundColor: categories.color}]}>
+                      {categories.icon(22 ,THEME.COLORS.TEXT_DARK)}
+                    </View>
+                    
+                    <Text style={styles.titleCategory}>
+                      {categories.title}
+                    </Text>
+                    <View> 
+                      {
+                        categories == category ?
+                        <View style={styles.selected}>
+                          <Check color={THEME.COLORS.TEXT_DARK} size={12} weight={'bold'}/>
+                        </View> :
+                          <View></View>
+                      }
+                    </View>
+                  </View>
+                </TouchableNativeFeedback>
               ))
             }
         </View>

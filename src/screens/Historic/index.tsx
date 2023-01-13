@@ -1,9 +1,10 @@
-import React, { useState , useEffect} from 'react';
+import React, { useState , useEffect, useContext} from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import AuthContext from '../../contexts/auth';
 import { TouchableOpacity, View, Text, FlatList, TextInput } from 'react-native';
 import axios from 'axios';
-const baseUrl = 'http:192.168.0.10:3334';
+import { baseUrl } from '../../utils/route';
 import { Entypo } from '@expo/vector-icons';
 import { MoviCard, RegisterProps} from '../../components/MoviCard';
 import { FocusAwareStatusBar } from '../../components/StatusBar';
@@ -16,12 +17,10 @@ import { NullComponent } from '../../components/NullComponent';
 
 
 
-interface Props {
-  refresh: boolean
-};
+export function Historic() {
 
+  const { userAccountData } = useContext(AuthContext);
 
-export function Historic({ refresh } : Props) {
   const [ register, setRegister] = useState<RegisterProps[]>([]);
 
   const [ registerCopy, setRegisterCopy] = useState<RegisterProps[]>([]);
@@ -38,7 +37,7 @@ export function Historic({ refresh } : Props) {
 
   useEffect(() => {
     try{
-      axios(`${baseUrl}/user/42f67476-bc7d-4ebf-9b55-a4718acf2a25/registers`).then(response =>{
+      axios(`${baseUrl}/user/${userAccountData.id}/registers`).then(response =>{
         setRegister(response.data);
         setRegisterCopy(response.data);
       })
@@ -49,7 +48,7 @@ export function Historic({ refresh } : Props) {
       setLoading(false)
     }
 
-  },[refresh])
+  },[])
 
   function search(par: string){
 

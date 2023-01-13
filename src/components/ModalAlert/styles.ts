@@ -21,7 +21,6 @@ export const styles = StyleSheet.create({
     marginTop: 32
   },
   buttonPattern: {
-    backgroundColor: THEME.COLORS.SUCCESS,
     width: 80,
     padding: 12,
     borderRadius: 25,

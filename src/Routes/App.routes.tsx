@@ -1,13 +1,13 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import { TabRoutes } from './Tab.routes'
-
 import { Historic } from '../screens/Historic';
-import { Register } from '../screens/Register';
+
+
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
-export function StackRoutes(){
+export function AppRoutes(){
     return(
         <Navigator screenOptions={{headerShown: false}}>
             <Screen

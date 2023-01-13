@@ -18,12 +18,12 @@ import {
  } from "phosphor-react-native";
 
 
-export var categoriesIncomes = [
+export const categoriesIncomes = [
     {
         id: "1",
         title: "Investimentos",
         color: THEME.COLORS.CATEGORY_GREEN,
-        icon:(sizeProp: any, colorProp: any) => <TrendUp  size={sizeProp} color={colorProp}/>
+        icon: (sizeProp: any, colorProp: any) => <TrendUp  size={sizeProp} color={colorProp}/>
     },
     {
         id: "2",
@@ -50,7 +50,7 @@ export var categoriesIncomes = [
         icon: (sizeProp: any, colorProp: any) => <DotsThree size={sizeProp} color={colorProp}/>
     }
 ]
-export var categoriesExpenses = [
+export const categoriesExpenses = [
     {
         id: "1",
         title: "Casa",

@@ -3,6 +3,7 @@ import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { activateKeepAwake } from "expo-keep-awake";
 import { GestureHandlerRootView } from "react-native-gesture-handler"
 import { RootSiblingParent } from 'react-native-root-siblings';
+import { AuthProvider } from './src/contexts/auth';
 
 activateKeepAwake();
 
@@ -36,7 +37,9 @@ export default function App() {
         <View style={styles.container}>
           <GestureHandlerRootView style={{flex: 1}}>
           <RootSiblingParent>
-          {fontsLoaded? <Routes /> : <ActivityIndicator />}
+            <AuthProvider>
+             {fontsLoaded? <Routes /> : <ActivityIndicator />} 
+            </AuthProvider>
           </RootSiblingParent>
           </GestureHandlerRootView>
         </View>

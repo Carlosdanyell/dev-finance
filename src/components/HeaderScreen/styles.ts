@@ -16,20 +16,9 @@ export const styles = StyleSheet.create({
   userImage:{
     width: 53,
     height:53,
-    borderRadius: 50,
-    padding: 3,
+    borderRadius: 53,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: THEME.COLORS.PRIMARY_LIGTH,
-    shadowColor: THEME.COLORS.SHADOW_400,
-    shadowOffset: {
-        width: 0,
-        height: 8,
-    },
-    shadowOpacity: 0.46,
-    shadowRadius: 11.14,
-    
-    elevation: 17,
   },
   containerIconsHeader:{
     flexDirection: 'row',
