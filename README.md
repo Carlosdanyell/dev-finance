@@ -19,3 +19,13 @@
 - [ ] Conectar gastos do cartão
 - [ ] Geração de relatórios
 - [ ] Avisos sobre o orçamento
+
+
+### 🛠 Tecnologias
+
+As seguintes ferramentas foram usadas na construção do projeto:
+
+- [Expo](https://expo.io/)
+- [Node.js](https://nodejs.org/en/)
+- [React Native](https://reactnative.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
