@@ -37,8 +37,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
  <br />
  <sub><b>CarlosDanyell</b></sub>🚀
 <br>
-
-Feito com ❤️ por Carlos Danyell👋🏽 Entre em contato!
+Entre em contato!
 [![Linkedin Badge](https://img.shields.io/badge/-Carlos-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/carlosdanyell/)](https://www.linkedin.com/in/carlosdanyell/) 
 [![Gmail Badge](https://img.shields.io/badge/-carlosdanyelldasilva@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:carlosdanyelldasilva@gmail.com)](mailto:carlosdanyelldasilva@gmail.com)
 
