@@ -7,6 +7,7 @@
 
 <div align="center">
     <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/Carlosdanyell/dev-finance-app?">
+    <img alt="GitHub" src="https://img.shields.io/github/license/Carlosdanyell/dev-finance-app?label=LICENCE">
 </div>
 
 ### Features
