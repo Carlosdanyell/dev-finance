@@ -19,8 +19,7 @@
 - [ ] Conectar gastos do cartão
 - [ ] Geração de relatórios
 - [ ] Avisos sobre o orçamento
-
-
+<br><br><br>
 ### 🛠 Tecnologias
 
 As seguintes ferramentas foram usadas na construção do projeto:
