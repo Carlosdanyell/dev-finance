@@ -1,12 +1,18 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import { THEME } from '../../../theme';
 
-export const styles = StyleSheet.create({
+let {height, width} = Dimensions.get('window')
+var smalScreen = width < 390;
+
+
+export const styles = EStyleSheet.create({
   container: {
     width: '100%',
-    maxWidth: 400,
+    maxWidth: smalScreen? '36rem' : '25rem',
+    alignSelf: 'center',
     backgroundColor: THEME.COLORS.BACKGROUND_900_LIGHT,
-    borderRadius: 25,
+    borderRadius: '1.56rem',
     shadowColor: THEME.COLORS.SHADOW_400,
     shadowOffset: {
       width: 0,
@@ -23,17 +29,17 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 28,
-    paddingTop: 20,
-    paddingBottom: 10,
+    paddingHorizontal: '1.75rem',
+    paddingTop: '1.25rem',
+    paddingBottom: '0.62rem',
   },
   containerMovimentation: {
-    paddingHorizontal: 10
+    paddingHorizontal: '0.62rem'
   },
   elementNull: {
     fontSize: THEME.FONT_SIZE.MD,
     fontFamily: THEME.FONT_FAMILY.LIGHT,
     alignSelf: 'center',
-    paddingVertical: 20
+    paddingVertical: '1.25rem'
   }
 });

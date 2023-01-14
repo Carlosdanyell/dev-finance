@@ -42,7 +42,6 @@ export function SignIn() {
    };
 
 
-
   return (
     <SafeAreaView>
     <FocusAwareStatusBar barStyle="dark-content" backgroundColor={THEME.COLORS.BACKGROUND_900_LIGHT } translucent/>

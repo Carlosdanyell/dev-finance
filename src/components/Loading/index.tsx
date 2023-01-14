@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, ActivityIndicator } from 'react-native';
-import { StyleSheet } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import { THEME } from '../../../theme';
 
 interface LoadingProps {
@@ -23,7 +23,7 @@ export function Loading({ color, size, visibility} : LoadingProps) {
 
 
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   container: {
     width: '100%',
     height: '100%',

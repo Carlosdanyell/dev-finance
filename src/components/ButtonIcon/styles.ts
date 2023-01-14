@@ -1,13 +1,13 @@
-import { StyleSheet } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 import { THEME } from '../../../theme';
 
-export const styles = StyleSheet.create({
+export const styles = EStyleSheet.create({
     buttonIcon:{
-        width: 60,
-        height: 60,
-        borderRadius: 50,
-        padding: 3,
+        width: '3.75rem',
+        height: '3.75rem',
+        borderRadius: '3.125rem',
+        padding: '0.18rem',
         alignItems: 'center',
         justifyContent: 'center',
         shadowColor: THEME.COLORS.SHADOW_400,
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
             height: 12,
         },
         shadowOpacity: 0.5,
-        shadowRadius: 16.00,
+        shadowRadius: 16,
         elevation: 12,
     },
 });

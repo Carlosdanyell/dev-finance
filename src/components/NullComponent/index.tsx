@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import { useNavigation } from '@react-navigation/native';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { THEME } from '../../../theme';
@@ -20,7 +20,7 @@ export function NullComponent({description} : Props) {
   );
 }
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',

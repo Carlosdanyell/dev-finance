@@ -1,7 +1,7 @@
-import { StyleSheet } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import { THEME } from '../../../theme';
 
-export const styles = StyleSheet.create({
+export const styles = EStyleSheet.create({
   container: {
     height: '100%',
     backgroundColor: THEME.COLORS.BACKGROUND_800_LIGHT,

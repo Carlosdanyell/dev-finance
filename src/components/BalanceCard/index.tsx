@@ -104,7 +104,7 @@ export function BalanceCard({visible, refresh} : Props) {
             <Text style={styles.balanceValue}>
                {visible? valuesFormated[0] :  
                <CashHidden 
-                sizeIcon={THEME.FONT_SIZE.LG}
+                sizeIcon={24}
                 color={THEME.COLORS.TEXT_LIGHT}
                />} 
             </Text>
@@ -125,7 +125,7 @@ export function BalanceCard({visible, refresh} : Props) {
                 <Text style={styles.incomesValue}>
                     {visible? valuesFormated[1] : 
                     <CashHidden 
-                     sizeIcon={THEME.FONT_SIZE.MD}
+                     sizeIcon={16}
                      color={THEME.COLORS.SUCCESS}
                     />}
                 </Text>
@@ -144,7 +144,7 @@ export function BalanceCard({visible, refresh} : Props) {
                     <Text style={styles.expenseValue}>
                         {visible? valuesFormated[2] : 
                         <CashHidden 
-                         sizeIcon={THEME.FONT_SIZE.MD}
+                         sizeIcon={16}
                          color={THEME.COLORS.ALERT}
                         />}
                     </Text>

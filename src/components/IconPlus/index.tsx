@@ -1,8 +1,6 @@
-
 import { View } from 'react-native';
-import { StyleSheet } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import { THEME } from '../../../theme';
-
 import { Plus } from 'phosphor-react-native';
 
 
@@ -18,13 +16,13 @@ export function IconPlus({focused}:any) {
   );
 }
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   container: {
-    width: 60,
-    height: 60,
+    width: '3.75rem',
+    height: '3.75rem',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 30,
+    borderRadius: '1.87rem',
     shadowColor: THEME.COLORS.SHADOW_400,
     shadowOffset: {
         width: 0,
@@ -33,6 +31,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 8.14,
     
-    elevation: 5,
+    elevation: '0.31rem',
   },
 });

@@ -1,14 +1,19 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import { THEME } from '../../../theme';
 
-export const styles = StyleSheet.create({
+let {height, width} = Dimensions.get('window')
+var smalScreen = width < 390;
+
+
+export const styles = EStyleSheet.create({
   container: {
     width: '90%',
-    maxWidth: 400,
+    maxWidth: '25rem',
     alignSelf: 'center',
-    borderRadius: 25,
-    padding: 15,
-    marginTop: 20,
+    borderRadius: '1.56rem',
+    padding: '1rem',
+    marginTop: '1.25rem',
     backgroundColor: THEME.COLORS.BACKGROUND_900_LIGHT,
     shadowColor: THEME.COLORS.SHADOW_400,
     shadowOffset: {
@@ -18,12 +23,12 @@ export const styles = StyleSheet.create({
   shadowOpacity: 0.5,
   shadowRadius: 16.00,
   elevation: 12,
-  transform: [{translateY: -100}]
+  transform: [{translateY: smalScreen? -80 : -100}]
   },
   containerBalance:{
-    marginTop: 5,
+    marginTop: '0.31rem',
     alignItems: 'center',
-    height: 95,
+    height: '5.93rem',
   },
   titleValue:{
     fontSize: THEME.FONT_SIZE.MD,
@@ -31,12 +36,12 @@ export const styles = StyleSheet.create({
     color: THEME.COLORS.TEXT_LIGHT,
   },
   balanceValue: {
-    fontSize: THEME.FONT_SIZE.LG,
+    fontSize: THEME.FONT_SIZE.MLG,
     fontFamily: THEME.FONT_FAMILY.MEDIUM,
     color: THEME.COLORS.TEXT_LIGHT,
     alignSelf: 'center',
-    marginTop: 10,
-    marginBottom: 30,
+    marginTop: '0.62rem',
+    marginBottom: '1.87rem',
   },
   containerMovimentations:{
     flexDirection: 'row',
@@ -47,9 +52,9 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
-    marginBottom: 10,
-    marginTop: 5,
-    paddingRight: 5,
+    marginBottom: '0.62rem',
+    marginTop: '0.31rem',
+    paddingRight: '0.31rem',
   },
   incomesValue:{
     fontFamily: THEME.FONT_FAMILY.MEDIUM,

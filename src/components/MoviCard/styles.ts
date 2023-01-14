@@ -1,14 +1,14 @@
-import { StyleSheet } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import { THEME } from '../../../theme';
 
-export const styles = StyleSheet.create({
+export const styles = EStyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: 16,
-    paddingHorizontal: 10,
+    paddingVertical: '1rem',
+    paddingHorizontal: '0.62rem',
     
   },
   contentDescription:{
@@ -16,10 +16,10 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {
-    marginLeft: 4,
-    marginRight: 20,
-    borderRadius: 30,
-    padding: 10,
+    marginLeft: '0.25rem',
+    marginRight: '1.25rem',
+    borderRadius: '1.87rem',
+    padding: '0.62rem',
   },
   contentValueDate: {
     flex: 1,
@@ -27,11 +27,11 @@ export const styles = StyleSheet.create({
   date: {
     fontSize: THEME.FONT_SIZE.SM,
     fontFamily: THEME.FONT_FAMILY.LIGHT,
-    marginBottom: 20,
+    marginBottom: '1.25rem',
     alignSelf: 'flex-end',
   },
   value: {
-    fontSize: 15,
+    fontSize: '1rem',
     fontFamily: THEME.FONT_FAMILY.LIGHT,
     alignSelf: 'flex-start',
   },

@@ -1,7 +1,7 @@
-import { StyleSheet } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import { THEME } from '../../../theme';
 
-export const styles = StyleSheet.create({
+export const styles = EStyleSheet.create({
   container: {
     width: '100%',
     backgroundColor: THEME.COLORS.PRIMARY,
@@ -9,14 +9,14 @@ export const styles = StyleSheet.create({
   contentHeader:{
     flexDirection:'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 27,
-    marginTop: 20,
-    marginBottom: 16
+    paddingHorizontal: '1.68rem',
+    marginTop: '1.25rem',
+    marginBottom: '1rem'
   },
   userImage:{
-    width: 53,
-    height:53,
-    borderRadius: 53,
+    width: '3.31rem',
+    height:'3.31rem',
+    borderRadius: '3.31rem',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -26,13 +26,13 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   iconHeader:{
-    marginLeft: 25
+    marginLeft: '1.56rem'
   },
   userName:{
     fontFamily: THEME.FONT_FAMILY.MEDIUM,
     fontSize: THEME.FONT_SIZE.MD,
     color: THEME.COLORS.TEXT_DARK,
-    marginBottom: 10,
-    marginLeft: 32,
+    marginBottom: '0.625rem',
+    marginLeft: '2rem',
   },
 });

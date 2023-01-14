@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-
-import { StyleSheet } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import { THEME } from '../../../theme';
 
 interface Props{
@@ -28,7 +27,7 @@ export function HeaderText({title, subtitle, margin, center} : Props ){
 }
 
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
 
   title: {
     fontSize: THEME.FONT_SIZE.MD,

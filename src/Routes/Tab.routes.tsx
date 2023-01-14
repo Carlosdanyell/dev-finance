@@ -1,19 +1,20 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useKeyboard } from '@react-native-community/hooks'
-
 import { useNavigation } from '@react-navigation/native';
-const { Screen, Navigator } = createBottomTabNavigator(); 
-
 import { Home } from '../screens/Home';
 import { Planning } from '../screens/Planning';
 import { Register } from '../screens/Register';
-import { Historic } from '../screens/Historic';
-
 import { House, Strategy } from 'phosphor-react-native';
 import { IconPlus } from '../components/IconPlus';
 import { THEME } from '../../theme';
+import { Dimensions } from 'react-native';
 
 
+
+const { Screen, Navigator } = createBottomTabNavigator();
+
+let {height, width} = Dimensions.get('window')
+var latgerScreen = width > 450;
 
 export function TabRoutes (){
 
@@ -33,8 +34,8 @@ export function TabRoutes (){
             tabBarStyle:{
                 borderTopColor: THEME.COLORS.BACKGROUND_900_LIGHT,
                 backgroundColor: THEME.COLORS.BACKGROUND_900_LIGHT,
-                height: 65,
-                paddingVertical: 8,
+                height: latgerScreen? 82 : 65,
+                paddingVertical: latgerScreen? 10 : 8,
                 shadowColor: THEME.COLORS.SHADOW_400,
                 shadowOffset:{
                 width: 0,
@@ -48,8 +49,8 @@ export function TabRoutes (){
             tabBarActiveTintColor:THEME.COLORS.PRIMARY,
             tabBarLabelStyle:{
                 color: THEME.COLORS.TEXT_LIGHT,
-                fontSize: THEME.FONT_SIZE.XM,
-                marginBottom: 8,
+                fontSize: latgerScreen? 15 : 12,
+                marginBottom: latgerScreen? 10 : 8,
             },
         }}>
             <Screen
@@ -60,7 +61,7 @@ export function TabRoutes (){
                     tabBarIcon: ({color}) => (
                        <House
                         color={color}
-                        size={32}
+                        size={latgerScreen? 40 : 32}
                        />
                     ),
                 }}
@@ -92,7 +93,7 @@ export function TabRoutes (){
                     tabBarIcon: ({color}) => (
                     <Strategy
                         color={color}
-                        size={32}
+                        size={latgerScreen? 40 : 32}
                     />
                     ),
                 }}

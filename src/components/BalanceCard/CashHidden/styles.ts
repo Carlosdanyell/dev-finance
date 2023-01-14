@@ -1,11 +1,11 @@
-import { StyleSheet } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
-export const styles = StyleSheet.create({
+export const styles = EStyleSheet.create({
   container: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    flex:1,
     flexDirection: 'row',
-    marginLeft: 5,
+    marginLeft: '0.31rem',
   },
 });

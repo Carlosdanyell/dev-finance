@@ -1,13 +1,13 @@
-import { StyleSheet } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import { THEME } from '../../../theme';
 
-export const styles = StyleSheet.create({
+export const styles = EStyleSheet.create({
   header: {
     width: '100%',
     backgroundColor: THEME.COLORS.BACKGROUND_800_LIGHT,
-    paddingTop: 40,
-    paddingBottom: 35,
-    paddingHorizontal: 25,
+    paddingTop: '2.5rem',
+    paddingBottom: '2.18rem',
+    paddingHorizontal: '1.56rem',
     flexDirection: 'row',
   },
   headerTitle: {
@@ -18,14 +18,14 @@ export const styles = StyleSheet.create({
   headerInput:{
     backgroundColor: THEME.COLORS.BACKGROUND_800_LIGHT,
     width: '90%',
-    borderRadius: 25,
+    borderRadius: '1.56rem',
     justifyContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 28,
-    paddingVertical: 10,
+    paddingHorizontal: '1.7rem',
+    paddingVertical: '0.62rem',
     alignSelf: 'center',
-    marginBottom: 5,    
+    marginBottom: '0.31rem',    
     borderColor: THEME.COLORS.TEXT_LIGHT,
     borderWidth: 1,
   }, 
@@ -33,14 +33,14 @@ export const styles = StyleSheet.create({
     fontFamily: THEME.FONT_FAMILY.LIGHT,
     fontSize: THEME.FONT_SIZE.MD,
     width: '100%',
-    paddingLeft: 20,
+    paddingLeft: '1.25rem',
     justifyContent: 'center',
   },
   contentList: {
-    paddingBottom: 200,
+    paddingBottom: '12.5rem',
   },
   cardMovimentation: {
-    paddingHorizontal: 10,
+    paddingHorizontal: '0.62rem',
     borderBottomWidth: 1,
     borderBottomColor: '#D0D0D0',
   }

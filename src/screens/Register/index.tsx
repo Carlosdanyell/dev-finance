@@ -1,5 +1,5 @@
 import React, { useState, useRef, useContext } from 'react';
-import { View, Text, TextInput, TouchableOpacity, TouchableNativeFeedback, KeyboardAvoidingView, Keyboard, ScrollView, Alert} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, TouchableNativeFeedback, KeyboardAvoidingView, Keyboard, ScrollView, Alert, Dimensions} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AuthContext from '../../contexts/auth';
 import { Controller, useForm, FieldError} from "react-hook-form";
@@ -61,8 +61,6 @@ export function Register() {
   const [ sucessToRegister ,setSucessToRegister] = useState<boolean>(false);
 
   const [ type, setType ] = useState<string>('entrada');
-  
-  const [ indiceSelected, setIndiceSelected] = useState<number>(0);
 
   const [ category, setCategory] = useState<PropsCategory>(categoriesIncomes[0]);
 
@@ -163,6 +161,8 @@ export function Register() {
 
 //   var formatedArrayCategoriesIncomes = reorderArray(categoriesIncomes , indiceSelected);
 
+let {height, width} = Dimensions.get('window')
+var latgerScreen = width > 450;
 
   return (
     <SafeAreaView>
@@ -175,7 +175,7 @@ export function Register() {
                 <Entypo
                   name="chevron-thin-left"
                   color={THEME.COLORS.TEXT_LIGHT}
-                  size={20}
+                  size={latgerScreen? 25 : 20}
                 />
             </TouchableOpacity>
             <View style={{flex: 1,marginRight: 20}}>
@@ -235,16 +235,14 @@ export function Register() {
                   </Text>
                   <TouchableOpacity onPress={onOpen}>
                   <View style={styles.input}>
+
                       <View style={[styles.category,{borderColor: category?.color}]}>
-                      
-                        {category?.icon(22 ,category?.color)}
-                        <Text style={{marginLeft: 15, alignSelf: 'center'}}>{category?.title}</Text>
+                        {category?.icon(latgerScreen? 28 : 22 ,category?.color)}
+                        <Text style={styles.titleCategoryButton}>{category?.title}</Text>
                       </View>
+                      
                       <View style={{flex: 1,alignItems: 'flex-end',paddingRight: 12}}>
-                        <CaretRight
-                          size={21}
-                          color={category?.color}
-                        />
+                        <CaretRight size={latgerScreen? 28 : 21} color={category?.color}/>
                       </View>
                   </View>
                   </TouchableOpacity>
