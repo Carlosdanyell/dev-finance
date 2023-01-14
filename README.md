@@ -33,12 +33,12 @@ As seguintes ferramentas foram usadas na construção do projeto:
 ---
 
 
- <img style="border-radius: 50%;" src="[https://avatars3.githubusercontent.com/u/380327?s=460&u=61b426b901b8fe02e12019b1fdb67bf0072d4f00&v=4](https://avatars.githubusercontent.com/u/78989209?s=96&v=4)" width="100px;" alt=""/>
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/78989209?v=4" width="100px;" alt=""/>
  <br />
  <sub><b>CarlosDanyell</b></sub>🚀
-
+<br>
 
 Feito com ❤️ por Carlos Danyell👋🏽 Entre em contato!
-[![Linkedin Badge](https://img.shields.io/badge/-Thiago-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/carlosdanyell/)](https://www.linkedin.com/in/carlosdanyell/) 
+[![Linkedin Badge](https://img.shields.io/badge/-Carlos-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/carlosdanyell/)](https://www.linkedin.com/in/carlosdanyell/) 
 [![Gmail Badge](https://img.shields.io/badge/-carlosdanyelldasilva@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:carlosdanyelldasilva@gmail.com)](mailto:carlosdanyelldasilva@gmail.com)
 
