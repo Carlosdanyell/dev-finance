@@ -34,7 +34,6 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 
  <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/78989209?v=4" width="100px;" alt=""/>
- <br />
  <h6>CarlosDanyell 🚀</h6>
  <br>
 Entre em contato!
