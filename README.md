@@ -8,3 +8,10 @@
 <div align="center">
     <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/Carlosdanyell/dev-finance-app?logo=typescript">
 </div>
+
+### Features
+
+- [x] Cadastro de usuário
+- [x] Registro de movimentações
+- [x] Dados salvos na AWS
+- [x] Gráficos de dados
