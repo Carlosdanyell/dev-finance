@@ -11,7 +11,7 @@
 
 ### Features
 
-- [x] Cadastro de usuário
+- [x] - Cadastro de usuário
 - [x] Registro de movimentações
 - [x] Dados salvos na AWS
 - [x] Gráficos de dados
