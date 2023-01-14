@@ -11,7 +11,10 @@
 
 ### Features
 
-- [x] - Cadastro de usuário
+- [x] Cadastro de usuário
 - [x] Registro de movimentações
 - [x] Dados salvos na AWS
 - [x] Gráficos de dados
+- [ ] Conectar gastos do cartão
+- [ ] Geração de relatórios
+- [ ] Avisos sobre o orçamento
