@@ -6,5 +6,5 @@
 <p align="center">Aplicativo para gestão financeira! 🚀</p>
 
 <div align="center">
-https://img.shields.io/github/package-json/v/Carlosdanyell/dev-finance-app?logo=typescript
+    [![Coverage Status](https://img.shields.io/github/package-json/v/Carlosdanyell/dev-finance-app?logo=typescript)]
 </div>
