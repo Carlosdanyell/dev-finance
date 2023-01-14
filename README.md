@@ -35,8 +35,8 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
  <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/78989209?v=4" width="100px;" alt=""/>
  <br />
- <sub><b>CarlosDanyell</b></sub>🚀
-<br>
+ <h6>CarlosDanyell 🚀</h6>
+ <br>
 Entre em contato!
 
 [![Linkedin Badge](https://img.shields.io/badge/-Carlos-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/carlosdanyell/)](https://www.linkedin.com/in/carlosdanyell/) 
