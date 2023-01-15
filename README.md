@@ -20,22 +20,47 @@
 - [ ] Geração de relatórios
 - [ ] Avisos sobre o orçamento
 <br><br>
-### 🛠 Tecnologias
+### Screenshots do APP
 
-As seguintes ferramentas foram usadas na construção do projeto:
-
-- [Expo](https://expo.io/)
-- [Node.js](https://nodejs.org/en/)
-- [React Native](https://reactnative.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
+<div>
+ <img src="https://lh3.googleusercontent.com/KmM6r-BS-4lbdiZyMyDP4JlowbDH2YL7BCTn_qoacpLK0rFUSv58lYqswb6gqkZzAyd16adcFO3Z0vHNz7lvS1FNjB_fjdUMOxE6UD1RIZ6ewIKP86sPIP2OpE8M1STWBZ6bnYz8grSrHZyYguKSAQyIV_cYd2pNTtQjwvPT4-pT-fU6DSuxxeH0GJlHnRx3TIpyZ1vvPyELa8mlFddX3UbCz35ikLT4aVgvwkCStxm1AfswAIaQhwvwy5frNcgnWPAunV5bg_svZjKRvAgkJrs157CrH74evWIAtqCzEQms_j9BKvt6NpA-X8ODir6B_An6ZBPyHn2dquhcTBGJmlptk5ZkPgauocVfgTZE3yPbNgfF1dLEeNF-gUIsP5AQ8d9AlLdqOiVPj9cCKvezvjujmwtr7X068712GEYhFp7zHXjwr2FA_9U-8ZvVS6NtQmOCLJIlsCzLTll5sfqiP4WH98yH5pD61cGO1XTGzdtJAYVOb6FCKtlY6kd_sIZLIsAomtJ37cidb52rHTOEJXem44TZWV3skSPfMZGpVsL2xdsJtWyACHgq57Oo-kKEMnEF0ZF5dshOYHl5hS-5X47q6X9jguF8wJaDCbWWFR6TvfnCcuJaelgRGW6xGLJY464w6DEDD5PVjiC_4cF5K7xMfQwLpLU0uKLkW5MsXZRfPqJLphsCHg0ewOi3zs9KmD542tGLJbLhFaVfskrwKOAndO59urKrD7tTj2ixeZ1gare_ChTAVggLMSVopn_f5opfTI6dgweMTBNNiziZaj9jffRwsHFxbTpiPOCkhq7_NJO0k8hZwRlEwn1wtce-zKAVEZbFG1irk6UiX8U1cWVFxJPgjei_tsxWiByZquL1BBfmo4UpZ2TIYSnw_5XbjpJil5RsLGjwuVlvggmsSrSP82ncsCVUzEJle99IwTT4s9mj=w449-h947-no?authuser=0" height="560" width="280" alt="DevFinance" />
+ <img src="https://lh3.googleusercontent.com/hN9iNxZlfOJ0M3eZtVmdRGwCnTbpOJFXSfeShYqEJsS-eMDjkhqZQnJHPA26J5pox1h5HvsHW5PV2lzR7X5I0Loo8gTHKM3zglk4vA8wv4ZFEja6IGtuHpW6DOBe3rs-hLAJ8jVSbQra4Gu8ajpDfK8b1S3stt_uGbJViinszdSBk1dIkCppQkeoy9qecm6BkTE-DEFW_tLpd7p1aeKO-vbFT8KXmIXtKBpRMZP6dbevVNupiq-5EZqP8DQnpWCDyDpMnXh2f6NmX8MllXC7TGeNZ4FvjgO9RFB-_OrqvBb9BCgfIMlEy5BVUlhqsxi0wj4Sk6H0DhCP6hjfR3omwWDplVqC8-i8d2P8MLie-EQZZyL3-Wsu2cQG-IyZ9HLatmgDZUX2atLQ-b3DejXWK55qPNR8qQJL9fgrnlC7iF1mt0mFU54ZtmPEgXlI_P5du99YJSaCk1znXEispvEY69VWPuK5fZyNstO9XndHnRfR_LsCgi0cb6caWJoltUAc2AmgSi0MT4kpOGjeGru2kMgktaos2KNltYUpWprVfXdvUEc47Urlu3t_QaH8QIpee3ewOTxjx_fwqdyJuKVukpg3yV9mO8Zweymyr1jSMlZEmY1nfdqi5OUqqF3bqF2R03VmCDhHoliIMa5QtRYl5fM4TaSXulbyDkOqg3MgxExmnBHqsI_36LYK4mw2VSwfk2wVKZVMkMW3_vcbhCB2EhiPOZjGiAGw_e7gpBTgFhqBbJ46JjRtf0xOCbVqLJdsjuaNzxEiJN1oBLQ6hnEJDQFkOKjiP0k3xGu5fkAjVeZQEV8aK0jLyCFRVWvI3mtJwpndlP2mQ9So4eVZcPcn5E_ukFm-N5Mm_4iZg2x2IMS-GnolseDxud8EOoogZpC0f4DS2qOgX1WtF2lha4F7q-9XmxAeljRbyvht-DSGtD6lZM-C=w449-h947-no?authuser=0" height="560" width="280" alt="DevFinance" />
+ 
+</div>
 <br><br>
+
+### Pré-requisitos
+
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/) e o [Expo](https://expo.dev/). 
+Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+
+### 🎲 Rodando a aplicação
+
+```bash
+# Clone este repositório
+$ git clone <https://github.com/Carlosdanyell/dev-finance-app.git>
+
+# Acesse a pasta do projeto no terminal/cmd
+$ cd dev-finance-app
+
+# Instale as dependências
+$ npm install
+
+# Execute a aplicação
+$ npx expo start
+
+# Abra o QRcode com o app ExpoGo (diponível nas lojas de aplicativo)
+
+
+```
+<a href="https://expo.dev/artifacts/eas/qEyA6jdMzBx8rSWSZnrp2y.apk"># Ou acesse o link e baixe o APK</a>
+
+<br><br>
+
 ### Autor
 ---
-
-
- <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/78989209?v=4" width="100px;" alt=""/>
- <h6>CarlosDanyell 🚀</h6>
- <br>
+<h6>CarlosDanyell 🚀</h6>
 Entre em contato!
 
 [![Linkedin Badge](https://img.shields.io/badge/-Carlos-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/carlosdanyell/)](https://www.linkedin.com/in/carlosdanyell/) 
