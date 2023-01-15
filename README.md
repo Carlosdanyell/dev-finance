@@ -54,7 +54,7 @@ $ npx expo start
 
 
 ```
-<a href="https://expo.dev/artifacts/eas/qEyA6jdMzBx8rSWSZnrp2y.apk"># Ou acesse o link e baixe o APK</a>
+<a href="https://expo.dev/artifacts/eas/9DJQ9VH43XU7JonzbiftvV.apk"># Ou acesse o link e baixe o APK</a>
 
 <br><br>
 
