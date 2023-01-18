@@ -44,7 +44,9 @@ export function Report() {
     const navigator = useNavigation();
 
     const handleGoBack = () => {
+
         navigator.goBack();
+        
     };
 
 
