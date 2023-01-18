@@ -1,12 +1,23 @@
-import { Coins, ChartBar, Receipt, Barcode, Gear, CreditCard, ChartLine, Book  } from 'phosphor-react-native';
+import { useState } from 'react';
+import {  Gear, CreditCard, ChartLine, Book  } from 'phosphor-react-native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { View, Text } from 'react-native';
-
 import { ButtonIcon } from '../ButtonIcon';
-
 import { THEME } from '../../../theme';
 import { styles } from './styles';
+import { routeParams } from '../../@types/@navigation';
+
+
+
 
 export function Functionalities() {
+
+  const navigator = useNavigation();
+
+   const navToReport = () => {
+
+        navigator.navigate('report');
+   }
 
   return (
     <View style={styles.container}>
@@ -22,13 +33,13 @@ export function Functionalities() {
         </View>
 
         <View style={styles.button}>
-            <ButtonIcon background={THEME.COLORS.BACKGROUND_900_LIGHT}>
+            <ButtonIcon onPress={() => navToReport()} background={THEME.COLORS.BACKGROUND_900_LIGHT}>
                 <ChartLine
                     color={THEME.COLORS.PRIMARY}
                     size={27}        
                 />
             </ButtonIcon>
-            <Text style={styles.description}>Gráficos</Text>
+            <Text style={styles.description}>Relatórios</Text>
         </View>
 
         <View style={styles.button}>
@@ -38,7 +49,7 @@ export function Functionalities() {
                     size={27}        
                 />
             </ButtonIcon>
-            <Text style={styles.description}>Relatórios</Text>
+            <Text style={styles.description}>Registros</Text>
         </View>
 
         <View style={styles.button}>

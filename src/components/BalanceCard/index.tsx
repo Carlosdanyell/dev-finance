@@ -61,7 +61,7 @@ export function BalanceCard({visible, refresh} : Props) {
             }
             
         })
-
+      
         var amontIncomes = 0;
         for(var i = 0; i < incomes.length; i++) {
             amontIncomes += incomes[i];

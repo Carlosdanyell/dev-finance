@@ -67,6 +67,9 @@ export function Register() {
   const navigation = useNavigation();
   
 
+  let {height, width} = Dimensions.get('window')
+  var latgerScreen = width > 450;
+
   function handleGoBack(){
     navigation.goBack()
   };
@@ -161,8 +164,6 @@ export function Register() {
 
 //   var formatedArrayCategoriesIncomes = reorderArray(categoriesIncomes , indiceSelected);
 
-let {height, width} = Dimensions.get('window')
-var latgerScreen = width > 450;
 
   return (
     <SafeAreaView>

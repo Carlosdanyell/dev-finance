@@ -46,7 +46,7 @@ export function Home() {
           <TouchableHighlight style={styles.cardMovimentations} onPress={nav}>
             <Movimentations 
             refresh={state}
-            title='Transações'
+            title='Registros'
             subtitle='Últimas movimentações'
             />
           </TouchableHighlight>

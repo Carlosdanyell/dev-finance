@@ -10,6 +10,7 @@ export const THEME = {
     TEXT_LIGHT: '#24272D',
 
     SHADOW_400: '#666666',
+    LIGHT_GRAY: '#E2E2E2',
 
     PRIMARY: '#FF6148',
     PRIMARY_LIGTH: '#ff7c68',

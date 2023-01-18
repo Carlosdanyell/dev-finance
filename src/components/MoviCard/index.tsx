@@ -1,12 +1,7 @@
 import { View, Text } from 'react-native';
 import { formatNumber } from '../../../node_modules/react-native-currency-input';
-
-import { TrendUp, TrendDown} from 'phosphor-react-native';
-
 import { HeaderText } from '../HeaderText';
-
 import { categoriesExpenses, categoriesIncomes } from '../../utils/categories';
-
 import { styles } from './styles';
 import { THEME } from '../../../theme';
 
@@ -34,7 +29,7 @@ export function MoviCard({data} : Props) {
     }
 
   // Formatando data de criação do registro
-    var extractData = data.createdAt.slice(0 , 10)
+    var extractData = data.createdAt.slice(0 , 10);
 
     const months = [
         "Jan",

@@ -1,13 +1,14 @@
 export interface routeParams{
-    state: boolean;
+    state: any;
 }
 
 export declare global {
     namespace ReactNavigation {
         interface RootParamList {
             home: any;
-            register: boolean;
+            register: undefined;
             historic: undefined;
+            report: undefined;
         }
     }
 }

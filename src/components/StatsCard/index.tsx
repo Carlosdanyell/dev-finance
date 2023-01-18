@@ -10,11 +10,11 @@ import { NullComponent } from '../NullComponent';
 import { RegisterProps } from '../MoviCard';
 import { styles } from './styles';
 
-interface Props {
+interface ParamsProps {
   refresh: any
 };
 
-export function StatsCard({ refresh } : Props) {
+export function StatsCard({ refresh } : ParamsProps) {
 
   const { userAccountData } = useContext(AuthContext);
 
@@ -77,13 +77,7 @@ export function StatsCard({ refresh } : Props) {
     }
   })
 
-  let arrNull = [
-    { 
-      categoryX : '',
-      amountValue : 1,
-      color : '#202020'
-    },
-  ]
+
 
   var amountValue = 0;
   for(var i = 0; i < dataCategories.length; i++) {
