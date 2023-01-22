@@ -15,6 +15,43 @@ export const styles = EStyleSheet.create({
     fontSize: THEME.FONT_SIZE.MD,
     alignSelf: 'center'
   }, 
+  containerMonths: {
+    backgroundColor: THEME.COLORS.BACKGROUND_800_LIGHT
+  },
+  monthButton: {
+    width: '7.25rem',
+    marginVertical: '0.62rem',
+    alignItens: 'center',
+    paddingVertical: '0.65rem',
+    borderRadius: '1.87rem',
+
+  },
+  textMonth: {
+    alignSelf: 'center',
+    fontSize: '0.87rem',
+    fontFamily: THEME.FONT_FAMILY.LIGHT,
+  },
+
+  containerSwitch: {
+    flexDirection: 'row',
+    backgroundColor: THEME.COLORS.BACKGROUND_800_LIGHT,
+    paddingTop: '0.87rem',
+    paddingBottom: '1.75rem',
+    alignItens: 'center',
+    justifyContent: 'space-between',
+  },
+  switchButton: {
+    alignItens: 'center',
+    justifyContent: 'center',
+    borderBottomWidth: 2.5,
+    paddingHorizontal: '4.5rem',
+    paddingVertical: '0.87rem',
+    
+  },
+  textSwitch: {
+    fontSize: THEME.FONT_SIZE.MD,
+    fontFamily: THEME.FONT_FAMILY.LIGHT
+  },
   headerInput:{
     backgroundColor: THEME.COLORS.BACKGROUND_800_LIGHT,
     width: '90%',

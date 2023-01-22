@@ -9,6 +9,11 @@ import { categoriesExpenses} from '../../utils/categories'
 import { NullComponent } from '../NullComponent';
 import { RegisterProps } from '../MoviCard';
 import { styles } from './styles';
+import { Entypo } from '@expo/vector-icons';
+import { THEME } from '../../../theme';
+import { maskCurrency } from '../../utils/mask';
+
+
 
 interface ParamsProps {
   refresh: any
@@ -88,12 +93,6 @@ export function StatsCard({ refresh } : ParamsProps) {
 
   return (
     <View style={styles.container}>
-        <View style={styles.header}>
-            <HeaderText 
-             title={'Despesas por categoria'}
-             subtitle={'Resumo de gastos'}   
-            />  
-      </View>
       <View style={styles.content}>
         { 
           dataCategories.length != 0 ?   
@@ -104,10 +103,10 @@ export function StatsCard({ refresh } : ParamsProps) {
           x={"categoryX"}
           y={"amountValue"}
           colorScale={dataCategories.map(item => item.color)}
-          innerRadius={50}
-          width={270}
-          height={270}
-          padding={30}
+          innerRadius={25}
+          width={160}
+          height={160}
+          padding={25}
           style={{
             labels: {
               display: 'none',
@@ -132,7 +131,7 @@ export function StatsCard({ refresh } : ParamsProps) {
                   {item.categoryX}
                 </Text>
                 <Text style={styles.label}>
-                  {`${((item.amountValue / amountValue) * 100).toFixed(2)} %`}
+                  {`R$ ${maskCurrency(item.amountValue.toFixed(2))}`}
                 </Text>
               </View>
             </View>

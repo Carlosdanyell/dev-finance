@@ -1,4 +1,3 @@
-import { ThemeProvider } from '@react-navigation/native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { THEME } from '../../../theme';
 

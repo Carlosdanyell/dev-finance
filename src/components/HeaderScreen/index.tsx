@@ -42,21 +42,21 @@ export function HeaderScreen({changeVisible, iconsVisible} : Props) {
                <TouchableOpacity
                     onPress={handleVisibility}
                 >
-                    {visibility? <Eye color={THEME.COLORS.TEXT_DARK}size={latgerScreen? 31 : 27}style={styles.iconHeader}/> : <EyeClosed color={THEME.COLORS.TEXT_DARK}size={latgerScreen? 31 : 27}style={styles.iconHeader}/>}
+                    {visibility? <Eye color={THEME.COLORS.TEXT_DARK}size={latgerScreen? 31 : 24}style={styles.iconHeader}/> : <EyeClosed color={THEME.COLORS.TEXT_DARK}size={latgerScreen? 31 : 24}style={styles.iconHeader}/>}
                 </TouchableOpacity> : null} 
 
 
                 <TouchableOpacity>
                     <Question 
                         color={THEME.COLORS.TEXT_DARK}
-                        size={latgerScreen? 31 : 27}            
+                        size={latgerScreen? 31 : 24}            
                         style={styles.iconHeader}
                     />
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <MoonStars
                         color={THEME.COLORS.TEXT_DARK}
-                        size={latgerScreen? 31 : 27}            
+                        size={latgerScreen? 31 : 24}            
                         style={styles.iconHeader}
                     />
                 </TouchableOpacity>

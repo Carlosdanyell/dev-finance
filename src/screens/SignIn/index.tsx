@@ -1,22 +1,20 @@
 import React,{ useState, useContext } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { UserProps } from '../../@types/@user';
 import  AuthContext from '../../contexts/auth';
 import { FocusAwareStatusBar } from '../../components/StatusBar';
+import { Loading } from '../../components/Loading';
+import { UserProps } from '../../@types/@user';
 import { ArrowRight } from 'phosphor-react-native'
 import { THEME } from '../../../theme';
 import { styles } from './styles';
-import { Loading } from '../../components/Loading';
-
-
 
 
 
 
 export function SignIn() {
  
-  const { loading, signed, handleUserAccont, userSocialAccount, handleUserAuthSignIn, userAccountData } = useContext(AuthContext);
+  const { loading, handleUserAccont, userSocialAccount, handleUserAuthSignIn, userAccountData } = useContext(AuthContext);
   const [ user, setUser] = useState<UserProps>({} as UserProps);
  
   async function handleGoogleData (){
@@ -56,7 +54,7 @@ export function SignIn() {
                  Acessar sua conta
             </Text>
             <Text style={styles.subtitle}>
-                Tenha sua o controle de suas finanças na palma da mão
+                Tenha o controle de suas finanças na palma da mão
             </Text>
           </View>
           <TouchableOpacity onPress={() => handleGoogleData()} style={[styles.socialButton, {opacity: loading? 0.8 :1}]}>   

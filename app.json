@@ -3,7 +3,7 @@
     "name": "devfinance",
     "slug": "devfinance",
     "scheme": "devfinance",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -25,10 +25,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.carlosdanyell.devfinance"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "2b471a96-2634-40a0-8f77-9b93ee1e4573"
+      }
     }
   }
 }

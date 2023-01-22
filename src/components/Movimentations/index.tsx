@@ -7,17 +7,14 @@ import { baseUrl } from '../../utils/route';
 import { HeaderText } from '../HeaderText';
 import { MoviCard, RegisterProps} from '../MoviCard';
 import { NullComponent } from '../NullComponent';
-
 import { styles } from './styles';
-
+import { THEME } from '../../../theme';
 
 interface Props {
   refresh: any;
-  title: string;
-  subtitle: string;
 }
 
-export function Movimentations({refresh, title, subtitle}: Props) {
+export function Movimentations({ refresh } : Props) {
 
   const { userAccountData } = useContext(AuthContext);
 
@@ -45,12 +42,7 @@ export function Movimentations({refresh, title, subtitle}: Props) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <HeaderText 
-            title={title}
-            subtitle={subtitle}
-        />  
-      </View>
+  
       <View style={styles.containerMovimentation}>
 
       {

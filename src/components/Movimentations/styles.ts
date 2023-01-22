@@ -20,7 +20,7 @@ export const styles = EStyleSheet.create({
     },
     shadowOpacity: 0.5,
     shadowRadius: 16.00,
-    elevation: 12,
+    elevation: 8,
   },
   header:{
     flex: 1,

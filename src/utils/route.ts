@@ -1,3 +1,3 @@
 
 // URL base
-export const baseUrl = 'http:18.229.135.20:3334';
+export const baseUrl = 'http:SEU IP';

@@ -1,5 +1,4 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { StyleSheet } from 'react-native';
 import { THEME } from '../../../theme';
 
 export const styles = EStyleSheet.create({
@@ -90,6 +89,7 @@ export const styles = EStyleSheet.create({
   },
   victoryPie: {
     width: '100%', 
+    position: 'relative',
     justifyContent:'center', 
     alignItems: 'center'
   },  containerLabels: {
@@ -97,6 +97,21 @@ export const styles = EStyleSheet.create({
     paddingLeft: '1.25rem',
     flex: 1,
     justifyContent: 'space-evenly'
+  },
+  labelVictoryChartPie: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItens: 'center'
+  },
+  ttleVictoryLabel: {
+    textAlign: 'center',
+    fontFamily: THEME.FONT_FAMILY.SEMI_BOLD,
+    color: THEME.COLORS.TEXT_LIGHT
+  },
+  valueVictoryLabel: {
+    fontFamily: THEME.FONT_FAMILY.REGULAR,
+    color: THEME.COLORS.TEXT_LIGHT,
+    fontSize: THEME.FONT_SIZE.SM
   },
   labelContent: {
     flexDirection: 'row',

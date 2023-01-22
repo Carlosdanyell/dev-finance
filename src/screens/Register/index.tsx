@@ -131,7 +131,6 @@ export function Register() {
   };
 
 
-
   const modalizeRef = useRef<Modalize>(null);
 
     const onOpen = () => {

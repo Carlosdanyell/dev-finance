@@ -10,7 +10,7 @@ export const styles = EStyleSheet.create({
     flexDirection:'row',
     justifyContent: 'space-between',
     paddingHorizontal: '1.68rem',
-    marginTop: '1.25rem',
+    marginTop: '1rem',
     marginBottom: '1rem'
   },
   userImage:{

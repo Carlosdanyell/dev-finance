@@ -5,7 +5,7 @@ import { THEME } from '../../../theme';
 
 interface Props{
     title: String;
-    subtitle: String;
+    subtitle?: String;
     margin?: number;
     center?: boolean;
 }
@@ -19,9 +19,9 @@ export function HeaderText({title, subtitle, margin, center} : Props ){
         <Text style={[styles.title,{marginBottom: margin? margin : 12,}]}>
             {title}
         </Text>
-        <Text style={styles.subtitle}>
+       {subtitle? <Text style={styles.subtitle}>
             {subtitle}
-        </Text>
+        </Text> : <View></View>}
     </View>
   );
 }

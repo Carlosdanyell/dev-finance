@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { View, SafeAreaView, Dimensions, Text} from 'react-native';
-import { ThemeProvider, useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { Entypo } from '@expo/vector-icons'
 import { FocusAwareStatusBar } from '../../components/StatusBar';
 import { months } from '../../utils/months';
@@ -8,7 +8,7 @@ import { THEME } from '../../../theme';
 import { styles } from './styles';
 import { FlatList, ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { NullComponent } from '../../components/NullComponent';
-import { VictoryPie } from 'victory-native';
+import { VictoryChart, VictoryLine, VictoryPie } from 'victory-native';
 import { HeaderText } from '../../components/HeaderText';
 import { categoriesExpenses, categoriesIncomes } from '../../utils/categories';
 import AuthContext from '../../contexts/auth';
@@ -24,9 +24,11 @@ interface MonthsProps {
 interface DataProps {
   data: RegisterProps
 }
+interface RouteProps {
+  refresh: any;
+}
 
-
-export function Report() {
+export function Report({ refresh } : RouteProps) {
 
     let { width } = Dimensions.get('window')
     var latgerScreen = width > 450;
@@ -35,10 +37,11 @@ export function Report() {
 
     const [ typeRegisterSelected, setTypeRegisterSelected ] = useState<string>('entrada');
 
+    const [ categorySelected, setCategorySelected ] = useState<string>('')
+
     const { userAccountData } = useContext(AuthContext);
 
     const [ register, setRegister] = useState<RegisterProps[]>([]);
-
 
 
     const navigator = useNavigation();
@@ -53,85 +56,92 @@ export function Report() {
     const handleSelectMonth = (par: MonthsProps) => {
         
         setMonthSelected(par);
+        setCategorySelected('');
 
     }
 
     const handleSelectTypeRegister = (par : number) => {
 
-      setTypeRegisterSelected(par == 1? 'entrada' : 'saida')
+      setTypeRegisterSelected(par == 1? 'entrada' : 'saida');
+      setCategorySelected('');
 
     };
     var typeRegisterText = typeRegisterSelected == 'entrada'? 'Receitas' : 'Despesas';
 
+    const handleSelectCategoryRegister = (par : string) => {
+      setCategorySelected(prev => prev == par? '' : par)
+    }
+
 // Script stats
+  useEffect(() => {
+    try{
+      axios(`${baseUrl}/user/${userAccountData.id}/registers`).then(response =>{
+        setRegister(response.data);
+      })
+
+    }catch(err){
+      console.log(err);
+    }
+
+  },[])
 
 
-useEffect(() => {
-  try{
-    axios(`${baseUrl}/user/${userAccountData.id}/registers`).then(response =>{
-      setRegister(response.data);
-    })
-
-  }catch(err){
-    console.log(err);
-  }
-
-},[monthSelected,typeRegisterSelected])
-
-
-var allDataRegistered = register.map(register => {
-  if(register.typeRegister == typeRegisterSelected && months[parseFloat(register.createdAt.slice(0 , 10).slice(5 , 7))-1 ] == monthSelected){
-    return register.category
-  }
-}).filter(function (i) {
-  return i;
-})
-
-var categoriesDataFormated = allDataRegistered.filter((index, i) => allDataRegistered.indexOf(index) === i);
-
-var dataCategories = categoriesDataFormated.map(category => {
-
-  var value =  register.map(register => {
-
-    if(register.category == category){
-        var value = parseFloat(register.value);
-        return value;
-    }else{
-        return 0
-    } 
-  })
-
-  var amontValueCategory = 0;
-      for(var i = 0; i < value.length; i++) {
-        amontValueCategory += value[i];
-      }
-  
-
-      var typeCategory = typeRegisterSelected == 'entrada'? categoriesIncomes : categoriesExpenses;
-
-
-  var colorCategory = typeCategory.map(item => {
-    if(item.title == category){
-      return item.color
+  var allDataRegistered = register.map(register => {
+    if(register.typeRegister == typeRegisterSelected && months[parseFloat(register.createdAt.slice(0 , 10).slice(5 , 7))-1 ] == monthSelected){
+      return register.category
     }
   }).filter(function (i) {
     return i;
-  })[0];
+  })
 
- return {
-    categoryX : category,
-    amountValue : amontValueCategory,
-    color : colorCategory
+
+  var categoriesDataFormated = allDataRegistered.filter((index, i) => allDataRegistered.indexOf(index) === i);
+
+
+  var dataCategories = categoriesDataFormated.map(category => {
+
+    var value = register.map(register => {
+
+      if(register.typeRegister == typeRegisterSelected && register.category == category){
+          var value = parseFloat(register.value);
+          return value;
+      }else{
+          return 0
+      } 
+    })
+
+    //Sum all values in category
+    var amontValueCategory = 0;
+        for(var i = 0; i < value.length; i++) {
+          amontValueCategory += value[i];
+        }
+    
+
+    var typeCategory = typeRegisterSelected == 'entrada'? categoriesIncomes : categoriesExpenses;
+
+
+    var colorCategory = typeCategory.map(item => {
+      if(item.title == category){
+        return item.color
+      }
+    }).filter(function (i) {
+      return i;
+    })[0];
+
+  return {
+      categoryX : category,
+      amountValue : amontValueCategory,
+      color : colorCategory
+    }
+  })
+
+  var newDataCategories = JSON.parse(JSON.stringify(dataCategories));
+  
+  //Sum all values in category
+  var amountValue = 0;
+  for(var i = 0; i < dataCategories.length; i++) {
+      amountValue += dataCategories[i].amountValue;
   }
-})
-
-
-
-var amountValue = 0;
-for(var i = 0; i < dataCategories.length; i++) {
-    amountValue += dataCategories[i].amountValue;
-}
-var newDataCategories = JSON.parse(JSON.stringify(dataCategories));
 
 
   return (
@@ -204,22 +214,32 @@ var newDataCategories = JSON.parse(JSON.stringify(dataCategories));
               dataCategories.length != 0 ?   
               <View style={styles.victoryPie}> 
               <VictoryPie
-              name = "ExpenseResume"
-              animate={{ duration: 90, easing: "elasticIn" }}
+              name = "resume"
+              animate={{ duration: 2, easing: "bounce" }}
               data={dataCategories}
               x={"categoryX"}
               y={"amountValue"}
               colorScale={dataCategories.map(item => item.color)}
-              innerRadius={50}
+              innerRadius={60}
               width={270}
               height={270}
               padding={30}
               style={{
                 labels: {
                   display: 'none',
+                },
+                data: {
+                  fillOpacity: ({ datum }) => (datum.categoryX == categorySelected || categorySelected == ''? 1 : 0.5),
+                  stroke: ({ datum }) => (datum.categoryX == categorySelected? datum.color : 'none'),
+                  strokeOpacity: 0.8,
+                  strokeWidth: 5,
                 }
               }}
               /> 
+              <View style={styles.labelVictoryChartPie}>
+                <Text style={styles.ttleVictoryLabel}>Total</Text>
+                <Text style={styles.valueVictoryLabel}>{` R$ ${maskCurrency(amountValue.toFixed(2))}`}</Text>
+              </View>
               </View> :  <View></View>
             }
             {
@@ -231,7 +251,7 @@ var newDataCategories = JSON.parse(JSON.stringify(dataCategories));
                       if (a.amountValue < b.amountValue) return 1;
                       return 0;
                   }).map((item : any) => 
-                      <View key={item.categoryX} style={styles.labelContent}>
+                      <TouchableOpacity onPress={() => handleSelectCategoryRegister(item.categoryX)} key={item.categoryX} style={styles.labelContent}>
                         <View style={[styles.labelIndicator, {backgroundColor: item.color}]}>
                         </View>
                         <View style={styles.containerLabel}>
@@ -253,15 +273,10 @@ var newDataCategories = JSON.parse(JSON.stringify(dataCategories));
                             </Text>
                           </View>
                         </View>
-                      </View>
+                      </TouchableOpacity>
                     )
                     
                   }
-                </View>
-
-                <View style={styles.resumeContainer}>
-                  <Text style={styles.resumeTitle}>{`Total de ${typeRegisterText.toLowerCase()} no mês de ${monthSelected.name.toLowerCase()}`}</Text>
-                  <Text style={styles.resumeValue}>{` R$ ${maskCurrency(amountValue.toFixed(2))}`}</Text>
                 </View>
               </View>
               :

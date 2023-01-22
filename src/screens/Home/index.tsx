@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ScrollView, View, TouchableHighlight,} from 'react-native';
+import { ScrollView, View, TouchableOpacity } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { routeParams } from '../../@types/@navigation';
 import { FocusAwareStatusBar } from '../../components/StatusBar';
@@ -11,7 +11,8 @@ import { Movimentations } from '../../components/Movimentations';
 import { StatsCard } from '../../components/StatsCard';
 import { styles } from './styles';
 import { THEME } from '../../../theme';
-
+import { HeaderText } from '../../components/HeaderText';
+import { Entypo } from '@expo/vector-icons';
 
 
 
@@ -28,31 +29,57 @@ export function Home() {
       setVisibility(!par)
   }
 
-  function nav(){
+  const handleNavToHistoric = () => {
     navigator.navigate('historic')
   };
+
+  const handleNavToReport = () => {
+
+      navigator.navigate('report');
+  }
 
   return (
     <SafeAreaView style={styles.container}>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor={THEME.COLORS.PRIMARY}  translucent/>
-      <ScrollView showsVerticalScrollIndicator={false} >
-
+      <ScrollView showsVerticalScrollIndicator={false}>
+  
         <HeaderScreen iconsVisible={true} changeVisible={handleVisibility}/>
         <View style={styles.section}></View>
+
         <View style={styles.main}> 
           <BalanceCard visible={visibility} refresh={state}/>
 
-          <Functionalities />
-          <TouchableHighlight style={styles.cardMovimentations} onPress={nav}>
-            <Movimentations 
-            refresh={state}
-            title='Registros'
-            subtitle='Últimas movimentações'
-            />
-          </TouchableHighlight>
+          <TouchableOpacity  activeOpacity={0.95} style={styles.cardMovimentations} onPress={handleNavToHistoric}>
+            <View style={styles.headerCard}>
+              <HeaderText 
+                  title={'Registros'}
+                  subtitle={'Últimas movimentações'}
+                  margin={8}
+              />  
+              <Entypo
+                name="chevron-thin-right"
+                color={THEME.COLORS.TEXT_LIGHT}
+                size={16}
+              />
+            </View>
+            <Movimentations refresh={state}/>
+          </TouchableOpacity>
 
-          <StatsCard refresh={state} />
-          
+          <TouchableOpacity  activeOpacity={0.95} style={styles.cardMovimentations} onPress={handleNavToReport}>
+            <View style={styles.headerCard}>
+              <HeaderText 
+                title={'Gráficos'}
+                subtitle={'Resumo de despesas'}  
+                margin={8} 
+              />  
+              <Entypo
+                name="chevron-thin-right"
+                color={THEME.COLORS.TEXT_LIGHT}
+                size={16}
+              />
+            </View>
+             <StatsCard refresh={state} />
+          </TouchableOpacity>
         </View>
 
       </ScrollView>

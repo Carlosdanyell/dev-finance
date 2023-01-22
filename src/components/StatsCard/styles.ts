@@ -5,7 +5,6 @@ export const styles = EStyleSheet.create({
   container: {
     backgroundColor: THEME.COLORS.BACKGROUND_900_LIGHT,
     borderRadius: '1.56rem',
-    marginTop: '1.75rem',
     shadowColor: THEME.COLORS.SHADOW_400,
     shadowOffset: {
       width: 0,
@@ -13,8 +12,7 @@ export const styles = EStyleSheet.create({
     },
     shadowOpacity: 0.5,
     shadowRadius: 16.00,
-    elevation: 12,
-    transform: [{translateY: -100}],
+    elevation: 8,
   },
   header:{
     flex: 1,
@@ -28,16 +26,16 @@ export const styles = EStyleSheet.create({
     paddingBottom: '0.62rem',
   },
   content: {
-  
+    flexDirection: 'row',
+    paddingVertical: '1rem'
   },
   victoryPie: {
-    width: '100%', 
+    width: '40%', 
     justifyContent:'center', 
-    alignItems: 'center'
+    alignItems: 'flex-start'
   },
   containerLabels: {
-    paddingBottom: '1.25rem',
-    paddingLeft: '1.25rem',
+    width: '60%',
     flex: 1,
     justifyContent: 'space-evenly'
   },

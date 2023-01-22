@@ -1,17 +1,11 @@
-import React,{ useEffect } from 'react';
+import React from 'react';
 import { ActivityIndicator, Dimensions, View } from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
 import { activateKeepAwake } from "expo-keep-awake";
 import { GestureHandlerRootView } from "react-native-gesture-handler"
 import { RootSiblingParent } from 'react-native-root-siblings';
 import { AuthProvider } from './src/contexts/auth';
 import { Routes } from './src/Routes';
-
-
-
-activateKeepAwake();
-
-
+import EStyleSheet from 'react-native-extended-stylesheet';
 import {
   useFonts, 
   Inter_300Light,
@@ -24,7 +18,7 @@ import {
 
 
 
-
+activateKeepAwake();
 
 
 export default function App() {
