@@ -72,7 +72,7 @@ $ npm run dev
 
 ```
 
-<a href="https://expo.dev/artifacts/eas/gQwfoLP9KfmU9KCk5c5LVN.apk"># Ou acesse o link e baixe o APK </a>
+<a href="https://expo.dev/artifacts/eas/tCNk6Myq5aT2VTQUsV1XTB.apk"># Ou acesse o link e baixe o APK </a>
 
 <br><br>
 
