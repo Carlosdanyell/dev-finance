@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./assets/splash.png" style="object-fit: cover; border-radius:25px" height="150" width="175" alt="DevFinance" />
+    <img src="./assets/icon.png" style="object-fit: cover; border-radius:25px" height="150" width="175" alt="DevFinance" />
 </p>
 <br>
 <h3 align="center">Aplicativo para gestão financeira! 🚀</h3>
@@ -55,8 +55,8 @@ $ npx expo start
 # Abra o QRcode com o app ExpoGo (diponível nas lojas de aplicativo)
 
 # Para rodar o servidor acesse este repositório: https://github.com/Carlosdanyell/dev-finance-server
-  # Clone este repositório
 
+# Clone este repositório
 $ git clone https://github.com/Carlosdanyell/dev-finance-server.git
 
 # Acesse a pasta do projeto no terminal/cmd
@@ -72,9 +72,9 @@ $ npm run dev
 
 ```
 
-`<a href="https://expo.dev/artifacts/eas/dejJkGE7wVyLXgo7VHW461.apk">`# Ou acesse o link e baixe o APK `</a>`
+<a href="https://expo.dev/artifacts/eas/78Jw4Zc3NfHpLRMQWj4cZi.apk"># Ou acesse o link e baixe o APK </a>
 
-`<br><br>`
+<br><br>
 
 ### Autor
 
