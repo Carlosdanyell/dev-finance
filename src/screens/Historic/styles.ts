@@ -80,5 +80,19 @@ export const styles = EStyleSheet.create({
     paddingHorizontal: '0.62rem',
     borderBottomWidth: 1,
     borderBottomColor: '#D0D0D0',
-  }
+  },
+
+    // styles for modalize
+    headerModalize: {
+      borderBottomColor: '#D0D0D0',
+      borderBottomWidth: 1,
+      paddingHorizontal: '1rem',
+      paddingTop: '1.56rem',
+      paddingBottom: '1.56rem',
+    },
+    textHeaderModalize: {
+      fontFamily: THEME.FONT_FAMILY.MEDIUM,
+      fontSize: THEME.FONT_SIZE.MD,
+      color: THEME.COLORS.TEXT_LIGHT
+    },
 });

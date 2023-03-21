@@ -53,13 +53,15 @@ export function HeaderScreen({changeVisible, iconsVisible} : Props) {
                         style={styles.iconHeader}
                     />
                 </TouchableOpacity>
+                {/* 
+                  // icon darkMode
                 <TouchableOpacity>
                     <MoonStars
                         color={THEME.COLORS.TEXT_DARK}
                         size={latgerScreen? 31 : 24}            
                         style={styles.iconHeader}
                     />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
         </View>
         {iconsVisible?         

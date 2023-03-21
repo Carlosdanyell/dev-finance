@@ -99,4 +99,22 @@ export const styles = EStyleSheet.create({
     fontFamily: THEME.FONT_FAMILY.MEDIUM,
     marginRight: '1.37rem',
   },
+  handleOtherAccountButton:{
+    width: '100%',
+    position: 'absolute',
+    bottom: '6.5rem',
+    backgroundColor: THEME.COLORS.BACKGROUND_900_LIGHT,
+    marginTop: '5rem',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingVertical: '1.25rem',
+    paddingHorizontal: '1rem',
+    borderRadius: '0.31rem',
+  },
+  textButtonHandleOtherAccount :{
+    color: THEME.COLORS.TEXT_LIGHT,
+    fontSize: THEME.FONT_SIZE.MD,
+    fontFamily: THEME.FONT_FAMILY.LIGHT,
+  },
 });

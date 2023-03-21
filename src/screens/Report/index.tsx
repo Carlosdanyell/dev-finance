@@ -8,7 +8,7 @@ import { THEME } from '../../../theme';
 import { styles } from './styles';
 import { FlatList, ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { NullComponent } from '../../components/NullComponent';
-import { VictoryChart, VictoryLine, VictoryPie } from 'victory-native';
+import { VictoryPie } from 'victory-native';
 import { HeaderText } from '../../components/HeaderText';
 import { categoriesExpenses, categoriesIncomes } from '../../utils/categories';
 import AuthContext from '../../contexts/auth';
@@ -41,7 +41,7 @@ export function Report({ refresh } : RouteProps) {
 
     const { userAccountData } = useContext(AuthContext);
 
-    const [ register, setRegister] = useState<RegisterProps[]>([]);
+    const [ register, setRegister ] = useState<RegisterProps[]>([]);
 
 
     const navigator = useNavigation();
@@ -102,7 +102,7 @@ export function Report({ refresh } : RouteProps) {
 
     var value = register.map(register => {
 
-      if(register.typeRegister == typeRegisterSelected && register.category == category){
+      if(register.typeRegister == typeRegisterSelected && register.category == category && months[parseFloat(register.createdAt.slice(0 , 10).slice(5 , 7))-1 ] == monthSelected){
           var value = parseFloat(register.value);
           return value;
       }else{
@@ -238,7 +238,7 @@ export function Report({ refresh } : RouteProps) {
               /> 
               <View style={styles.labelVictoryChartPie}>
                 <Text style={styles.ttleVictoryLabel}>Total</Text>
-                <Text style={styles.valueVictoryLabel}>{` R$ ${maskCurrency(amountValue.toFixed(2))}`}</Text>
+                <Text style={styles.valueVictoryLabel}>{` R$ ${maskCurrency(parseFloat(amountValue.toFixed(2)))}`}</Text>
               </View>
               </View> :  <View></View>
             }
@@ -266,7 +266,7 @@ export function Report({ refresh } : RouteProps) {
                           
                           <View style={styles.box2}>
                           <Text style={styles.InfoAmountValue}>
-                              {`R$ ${maskCurrency(item.amountValue.toFixed(2))}`}
+                              {`R$ ${maskCurrency(parseFloat(item.amountValue.toFixed(2)))}`}
                             </Text>
                             <Text style={styles.InfoPercentValue}>
                               {`${((item.amountValue / amountValue) * 100).toFixed(2).replace('.' , ',')} %`}

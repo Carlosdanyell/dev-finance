@@ -18,7 +18,7 @@ const CustomSwitch = ({
   option1,
   option2,
   onSelectSwitch,
-  selectionColor
+  selectionColor,
 }: Props) => {
 
   const [getSelectionMode, setSelectionMode] = useState(selectionMode);

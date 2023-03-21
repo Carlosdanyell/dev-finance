@@ -1,14 +1,16 @@
-import React, { useState, useRef, useContext } from 'react';
-import { View, Text, TextInput, TouchableOpacity, TouchableNativeFeedback, KeyboardAvoidingView, Keyboard, ScrollView, Alert, Dimensions} from 'react-native';
+import React, { useState, useRef, useContext, useEffect } from 'react';
+import { View, Text, TextInput, TouchableOpacity, TouchableNativeFeedback, KeyboardAvoidingView, Keyboard, ScrollView, Alert, Dimensions, BackHandler} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AuthContext from '../../contexts/auth';
 import { Controller, useForm, FieldError} from "react-hook-form";
 import CurrencyInput from 'react-native-currency-input';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { routeParams } from '../../@types/@navigation';
 import * as yup from "yup";
 import axios from 'axios';
 import { baseUrl } from '../../utils/route';
+import { maskCurrency } from '../../utils/mask';
 import { Entypo } from '@expo/vector-icons'
 import { FocusAwareStatusBar } from '../../components/StatusBar';
 import CustomSwitch  from '../../components/CustomSwitch';
@@ -16,6 +18,7 @@ import { HeaderText } from '../../components/HeaderText';
 import { ModalAlert } from '../../components/ModalAlert';
 import { categoriesExpenses, categoriesIncomes } from '../../utils/categories';
 import { Modalize } from 'react-native-modalize';
+import { RegisterProps } from '../../components/MoviCard';
 
 
 import { styles } from './styles';
@@ -63,16 +66,42 @@ export function Register() {
   const [ type, setType ] = useState<string>('entrada');
 
   const [ category, setCategory] = useState<PropsCategory>(categoriesIncomes[0]);
+  
+  const route = useRoute();
+  const [ dataParams, setDataParams ] = useState<routeParams | undefined>(undefined);
+  
 
   const navigation = useNavigation();
   
-
-  let {height, width} = Dimensions.get('window')
+  // width screen props
+  let {width} = Dimensions.get('window')
   var latgerScreen = width > 450;
 
   function handleGoBack(){
-    navigation.goBack()
+    navigation.navigate('home');
+    reset()
+    setDataParams(undefined);
+    return true
   };
+
+
+  // Register to update
+  
+ useEffect(() => {
+    
+      setDataParams(route.params as routeParams);
+
+
+ },[route.params])
+
+ useEffect(() => {
+  BackHandler.addEventListener("hardwareBackPress", handleGoBack);
+
+  return () =>
+    BackHandler.removeEventListener("hardwareBackPress", handleGoBack);
+}, []);
+
+
 
   async function handleDataRegister (data: dataModel){
 
@@ -80,13 +109,22 @@ export function Register() {
     data.category = category.title
 
     try {
-
-      await axios.post(`${baseUrl}/user/${userAccountData.id}/registers`, {
-        typeRegister: data.typeRegister,
-        description: data.description,
-        category: data.category,
-        value: data.value.toString()
-      }); 
+      if(!dataParams){
+        await axios.post(`${baseUrl}/user/${userAccountData.id}/registers`, {
+          typeRegister: data.typeRegister,
+          description: data.description,
+          category: data.category,
+          value: data.value.toString()
+        }); 
+      }else{
+        await axios.patch(`${baseUrl}/user/id/registers/${dataParams.registerSelected.id}`, {
+          typeRegister: data.typeRegister,
+          description: data.description,
+          category: data.category,
+          value: data.value.toString()
+        });
+      }
+   
 
       setSucessToRegister(true)
       setState(!state);
@@ -104,7 +142,8 @@ export function Register() {
 
   const onSelectSwitch = (value: number) => {
 
-      if(value === 2){
+
+      if(value === 2 ){
         if(type === 'saida'){
           return
         }
@@ -131,6 +170,7 @@ export function Register() {
   };
 
 
+
   const modalizeRef = useRef<Modalize>(null);
 
     const onOpen = () => {
@@ -153,6 +193,7 @@ export function Register() {
   
       onClose()
     };
+
 
 //   const reorderArray = (arr: any, index: number): any[] => {
 //     const newArray = [...arr];
@@ -180,14 +221,14 @@ export function Register() {
             </TouchableOpacity>
             <View style={{flex: 1,marginRight: 20}}>
               <Text style={styles.headerTitle}>
-                Novo Registro
+                {!dataParams? 'Novo Registro' : 'Alterar registro'}
               </Text>
             </View>
           </View>
 
             <View style={styles.headerContainer}>
               <Text style={styles.labelText}>
-                      Registrar
+                  {!dataParams? 'Registrar' : 'Alterar'}
               </Text>
               <CustomSwitch
                   selectionMode={1}
@@ -202,7 +243,7 @@ export function Register() {
               <View style={styles.headerContent}>
                 <HeaderText
                   title={'Movimentação'}
-                  subtitle={`Descreva os detalhes da ${type == 'entrada' ? 'receita' : 'despesa'}`}
+                  subtitle={`${!dataParams? 'Descreva' : 'Altere'} os detalhes da ${type == 'entrada' ? 'receita' : 'despesa'}`}
                 />
               </View>
               
@@ -219,7 +260,8 @@ export function Register() {
                           clearButtonMode='always'
                           style={styles.input}
                           selectionColor={THEME.COLORS.TEXT_LIGHT}
-                          placeholder={'Detalhe a operação'}
+                          placeholder={!dataParams? 'Detalhe a operação' : dataParams.registerSelected.description}
+                          placeholderTextColor={!dataParams? '#999999' : THEME.COLORS.TEXT_LIGHT}
                           maxLength={45}     
                           onChangeText={onChange}
                           value={value}         
@@ -264,6 +306,8 @@ export function Register() {
                           selectionColor={THEME.COLORS.TEXT_LIGHT}
                           value={value}
                           onChangeValue={onChange}
+                          placeholder={!dataParams? '0,00' : maskCurrency(parseFloat(dataParams.registerSelected.value))}
+                          placeholderTextColor={THEME.COLORS.TEXT_LIGHT}
                           delimiter="."
                           separator=","
                           precision={2}
@@ -301,12 +345,13 @@ export function Register() {
           sucessToRegister ? 'Registrado!' : 'Erro ao registrar'
         }
         subtitle={
-          sucessToRegister ? `Sua ${type == 'entrada' ? 'entrada' : 'saída'} foi registrada com sucesso` 
-          : `Houve um erro ao registrar a ${type == 'entrada' ? 'entrada' : 'saída'}`
+          sucessToRegister ? `Sua ${type == 'entrada' ? 'entrada' : 'saída'} foi ${!dataParams? 'registrada' : 'alterada'} com sucesso` 
+          : `Houve um erro ao ${!dataParams? 'registrar' : 'alterar' } a ${type == 'entrada' ? 'entrada' : 'saída'}`
         }
         statusBarTranslucent
         transparent
         visible={state}
+        titleButtonPattern={'OK'}
         colorButton={sucessToRegister? THEME.COLORS.SUCCESS: THEME.COLORS.ALERT}
         buttonPatternFunc={() => {
 
@@ -314,6 +359,7 @@ export function Register() {
 
           setTimeout(() => {
             navigation.navigate('home', {state})
+            setDataParams(undefined)
           }, 800);  
         }}
       />

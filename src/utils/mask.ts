@@ -1,8 +1,17 @@
-function maskCurrency(value: string) {
-    value = value.replace(/\D/g, "");
-    value = value.replace(/(\d)(\d{2})$/, "$1,$2");
-    value = value.replace(/(?=(\d{3})+(\D))\B/g, ".");
-    return value;
-  }
-  
-  export { maskCurrency };
+export function maskCurrency(value: number): string {
+  const formattedValue = formatValue(value.toFixed(2));
+  return formattedValue;
+}
+
+function formatValue(value: string): string {
+  let formattedValue = '';
+
+  const parts = value.split('.');
+  const decimalPart = parts[1];
+  const integerPart = parts[0];
+
+  formattedValue += integerPart.replace(/(\d)(?=(\d{3})+$)/g, '$1.');
+  formattedValue += ',' + decimalPart;
+
+  return formattedValue;
+}

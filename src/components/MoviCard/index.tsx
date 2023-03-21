@@ -2,6 +2,7 @@ import { View, Text } from 'react-native';
 import { formatNumber } from '../../../node_modules/react-native-currency-input';
 import { HeaderText } from '../HeaderText';
 import { categoriesExpenses, categoriesIncomes } from '../../utils/categories';
+import { abbreviatedMonth } from '../../utils/months';
 import { styles } from './styles';
 import { THEME } from '../../../theme';
 
@@ -31,20 +32,6 @@ export function MoviCard({data} : Props) {
   // Formatando data de criação do registro
     var extractData = data.createdAt.slice(0 , 10);
 
-    const months = [
-        "Jan",
-        "Fev",
-        "Mar",
-        "Abr",
-        "Mai",
-        "Jun",
-        "Jul",
-        "Ago",
-        "Set",
-        "Out",
-        "Nov",
-        "Dez"
-    ]
 
     function formatedDataString(str: string) {
         var day = str.slice(8, 10);
@@ -53,7 +40,7 @@ export function MoviCard({data} : Props) {
 
         function monthFormat(month: string) {
             let ind =  (parseFloat(month)-1);
-            return months[ind];
+            return abbreviatedMonth[ind];
          }
 
         var formatedData = `${day}/${monthFormat(month)}`;

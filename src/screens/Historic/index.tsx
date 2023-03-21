@@ -1,19 +1,23 @@
-import React, { useState , useEffect, useContext} from 'react';
+import React, { useState , useEffect, useContext, useRef} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AuthContext from '../../contexts/auth';
-import { TouchableOpacity, View, Text, FlatList, TextInput } from 'react-native';
+import { TouchableOpacity, View, Text, FlatList, TextInput, Keyboard, BackHandler } from 'react-native';
 import axios from 'axios';
 import { baseUrl } from '../../utils/route';
 import { Entypo } from '@expo/vector-icons';
+import { MagnifyingGlass } from 'phosphor-react-native';
 import { MoviCard, RegisterProps} from '../../components/MoviCard';
 import { FocusAwareStatusBar } from '../../components/StatusBar';
-import { styles } from './styles';
-import { THEME } from '../../../theme';
-import { MagnifyingGlass } from 'phosphor-react-native';
 import { Loading } from '../../components/Loading';
 import { NullComponent } from '../../components/NullComponent';
+import { RegisterDetails } from '../../components/RegisterDetails';
+import { THEME } from '../../../theme';
+import { styles } from './styles';
 import { months } from '../../utils/months';
+import { Modalize } from 'react-native-modalize';
+import { ModalAlert } from '../../components/ModalAlert';
+
 
 interface MonthsProps {
   id: number;
@@ -33,20 +37,32 @@ export function Historic() {
 
   const [ typeRegisterSelected, setTypeRegisterSelected ] = useState<string>('entrada');
 
+  const [ registerSelected, setRegisterSelected ] = useState<RegisterProps>({} as RegisterProps);
+
   const [ loading, setLoading] = useState<boolean>(true);
 
+  const [ isOpen, setIsOpen ] = useState<boolean>(false);
+
+  const [ updatedOrDeletedRegister, setUpdatedOrDeletedRegister ] = useState<boolean>(false);
+ 
   const navigation = useNavigation();
 
 
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", handleGoBack);
+
+    return () =>
+      BackHandler.removeEventListener("hardwareBackPress", handleGoBack);
+  }, []);
+
   function handleGoBack(){
-    navigation.goBack()
+    navigation.navigate('home' ,{updatedOrDeletedRegister});
+    return true
   } 
 
-  const handleSelectMonth = (par: MonthsProps) => {
-        
+  const handleSelectMonth = (par: MonthsProps) => { 
     setMonthSelected(par);
-
-}
+  }
 
   const handleSelectTypeRegister = (par : number) => {
 
@@ -66,7 +82,7 @@ export function Historic() {
       setLoading(false)
     }
 
-  },[])
+  },[updatedOrDeletedRegister])
 
   function search(par: string){
 
@@ -92,6 +108,52 @@ export function Historic() {
 
   var categoriesDataFormated = allDataRegistered.filter((index, i) => allDataRegistered.indexOf(index) === i) as RegisterProps[];
 
+  // Modaliza functions
+  const modalizeRef = useRef<Modalize>(null);
+
+  const onOpen = (par : RegisterProps) => {
+    modalizeRef.current?.open();
+    Keyboard.dismiss()
+
+    setRegisterSelected(par);
+  };
+
+  const onClose = () => {
+    modalizeRef.current?.close();
+  };
+
+  
+  const handleUpdateRegister = () => {
+
+    setUpdatedOrDeletedRegister(!updatedOrDeletedRegister);
+
+    navigation.navigate('main', {
+      screen: 'newRegister',
+      params: {registerSelected},
+    });
+
+    onClose();
+  };
+
+  const handleDeleteRegister = () => {
+    setIsOpen(true)
+  };
+
+
+  function deleteRegister() {
+    try {
+      axios.delete(`${baseUrl}/user/id/registers/${registerSelected.id}`).then(Response =>{
+        setUpdatedOrDeletedRegister(!updatedOrDeletedRegister);
+
+        onClose();
+      })
+
+      setIsOpen(false);
+    }catch (error) {
+      console.log(error);
+
+    }
+  };
 
   return (
     <SafeAreaView style={{backgroundColor: THEME.COLORS.BACKGROUND_800_LIGHT, flex: 1}}>
@@ -171,9 +233,9 @@ export function Historic() {
             data={categoriesDataFormated}
             keyExtractor={item => item.id}
             renderItem={({item}) => (
-              <View style={styles.cardMovimentation}>
+              <TouchableOpacity onPress={() => onOpen(item)} activeOpacity={0.4} style={styles.cardMovimentation}>
                 <MoviCard key={item.id} data={item}/>
-              </View>
+              </TouchableOpacity>
             )}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.contentList}
@@ -183,7 +245,42 @@ export function Historic() {
           />
 
         }
-        
+        <Modalize     
+          ref={modalizeRef}
+          handleStyle={{backgroundColor: THEME.COLORS.BACKGROUND_900_LIGHT}}
+          handlePosition={'inside'}
+          snapPoint={600}
+          modalHeight={620}
+          HeaderComponent={
+            <View style={styles.headerModalize}>
+              <Text style={styles.textHeaderModalize}>
+                Detalhes
+              </Text>
+            </View>
+          }
+        >
+          <View>
+            <RegisterDetails 
+              functionUpdate={() => handleUpdateRegister()}
+              functionDelete={() => handleDeleteRegister()} 
+              data={registerSelected} 
+            />
+          </View>
+        </Modalize>
+
+        <ModalAlert
+        title={'Deseja realmente apagar?'}
+        statusBarTranslucent
+        transparent
+        visible={isOpen}
+        cancelButton
+        titleButtonPattern={'SIM'}
+        titleButtonCancel={'NÃO'}
+        colorButton={THEME.COLORS.BACKGROUND_900_LIGHT}
+        colorTextButtons={THEME.COLORS.ALERT}
+        buttonPatternFunc={deleteRegister}
+        cancelFunc={() => setIsOpen(!isOpen)}
+      />
     </SafeAreaView>
 
   );

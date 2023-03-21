@@ -1,8 +1,9 @@
-import React,{ createContext, useState } from "react";
+import React,{ createContext, useEffect, useState } from "react";
 import * as AuthSession from 'expo-auth-session';
 import { UserDataAccountProps, UserProps } from "../@types/@user";
 import axios from 'axios';
 import { baseUrl } from '../utils/route';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type AuthResponse = {
     params: {
@@ -18,6 +19,7 @@ interface AuthContextData {
     userSocialAccount: UserDataAccountProps | null;
     handleUserAuthSignIn(): Promise<void>;
     userAccountData: UserProps;
+    handleDeleteUserLocalAccount(): Promise<void>;
 }
 
 
@@ -35,6 +37,28 @@ export function AuthProvider ({ children }: any){
     const [ userData, setUserData] = useState<UserProps>({} as UserProps);
 
     const [ userSigned, setUserSigned] = useState<boolean>(false);
+
+
+    async function handleUserAccontLocal (){
+
+      var response = await AsyncStorage.getItem("@devfinance:userData");
+
+      var data = response? JSON.parse(response) : null
+      
+      if(data != ''){
+        setAccountData(data);
+      }
+    }
+    
+    async function handleDeleteUserAccont (){
+
+     await AsyncStorage.removeItem("@devfinance:userData");
+     setAccountData(null)
+    }
+
+   useEffect(() => {
+    handleUserAccontLocal()
+   },[])
 
     async function handleGoogleData(){
         try {
@@ -64,10 +88,15 @@ export function AuthProvider ({ children }: any){
             };
             
             setAccountData(userAccountFormated);
+
+            await AsyncStorage.setItem("@devfinance:userData", JSON .stringify(userAccountFormated));
+
             setLoadingStatus(false);
           }
         }catch (error) {
           console.log(error)
+          setAccountData(null)
+          setLoadingStatus(false)
         }
     
       };
@@ -80,7 +109,9 @@ export function AuthProvider ({ children }: any){
           })
          
         }catch (error) {
-          console.log(error)
+          console.log(error);
+          setAccountData(null)
+          setUserSigned(false);
         }
        };
 
@@ -92,7 +123,8 @@ export function AuthProvider ({ children }: any){
             handleUserAccont: handleGoogleData,
             userSocialAccount: accountData,
             handleUserAuthSignIn: handleSignIn,
-            userAccountData: userData
+            userAccountData: userData,
+            handleDeleteUserLocalAccount: handleDeleteUserAccont
           }
           }>
             {children}

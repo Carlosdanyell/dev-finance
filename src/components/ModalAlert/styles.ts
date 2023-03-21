@@ -18,7 +18,9 @@ export const styles = EStyleSheet.create({
   containerButtons: {
     flexDirection: 'row',
     width: '90%',
-    marginTop: 32
+    marginTop: 32,
+    aliginItens: 'center',
+    justifyContent:'center'
   },
   buttonPattern: {
     width: 80,
@@ -30,6 +32,5 @@ export const styles = EStyleSheet.create({
   textButton: {
     fontSize: THEME.FONT_SIZE.SM,
     fontFamily: THEME.FONT_FAMILY.REGULAR,
-    color: THEME.COLORS.TEXT_LIGHT
   },
 });

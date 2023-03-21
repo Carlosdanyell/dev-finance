@@ -54,7 +54,7 @@ export function StatsCard({ refresh } : ParamsProps) {
 
     var value =  register.map(register => {
 
-      if(register.category == category){
+      if(register.typeRegister == 'saida' && register.category == category){
           var value = parseFloat(register.value);
           return value;
       }else{
@@ -131,7 +131,7 @@ export function StatsCard({ refresh } : ParamsProps) {
                   {item.categoryX}
                 </Text>
                 <Text style={styles.label}>
-                  {`R$ ${maskCurrency(item.amountValue.toFixed(2))}`}
+                  {`R$ ${maskCurrency(parseFloat(item.amountValue.toFixed(2)))}`}
                 </Text>
               </View>
             </View>

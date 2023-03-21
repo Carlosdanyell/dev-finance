@@ -1,6 +1,7 @@
-import React,{ useState, useContext } from 'react';
+import React,{ useState, useContext, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import  AuthContext from '../../contexts/auth';
 import { FocusAwareStatusBar } from '../../components/StatusBar';
 import { Loading } from '../../components/Loading';
@@ -11,11 +12,10 @@ import { styles } from './styles';
 
 
 
-
 export function SignIn() {
  
-  const { loading, handleUserAccont, userSocialAccount, handleUserAuthSignIn, userAccountData } = useContext(AuthContext);
-  const [ user, setUser] = useState<UserProps>({} as UserProps);
+  const { loading, handleUserAccont, userSocialAccount, handleUserAuthSignIn, handleDeleteUserLocalAccount } = useContext(AuthContext);
+
  
   async function handleGoogleData (){
     try {
@@ -31,14 +31,11 @@ export function SignIn() {
    async function handleUserAuth() {
     try {
       handleUserAuthSignIn();
-
-      setUser(userAccountData)
      
     }catch (error) {
       console.log(error)
     }
    };
-
 
   return (
     <SafeAreaView>
@@ -110,6 +107,16 @@ export function SignIn() {
            size={22}
           />
         </TouchableOpacity>
+        {   
+        !userSocialAccount ?
+        <View></View> :
+        <TouchableOpacity onPress={()=> handleDeleteUserLocalAccount()} style={styles.handleOtherAccountButton}>
+        
+        <Text style={styles.textButtonHandleOtherAccount}>
+            Usar outra conta
+        </Text>
+      </TouchableOpacity>
+        }
      </View> 
     </SafeAreaView>
     
