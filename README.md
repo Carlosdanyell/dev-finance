@@ -20,16 +20,6 @@
 - [ ] Avisos sobre o orçamento
   `<br><br>`
 
-### Screenshots do APP
-
-<div>
- <img src="./screenshots/Screenshot1.jpg" height="585" width="280" alt="DevFinance" />
- <img src="./screenshots/Screenshot2.jpg" height="585" width="280" alt="DevFinance" />
- <img src="./screenshots/Screenshot3.jpg" height="585" width="280" alt="DevFinance" />
- <img src="./screenshots/Screenshot4.jpg" height="585" width="280" alt="DevFinance" />
- <img src="./screenshots/Screenshot5.jpg" height="585" width="280" alt="DevFinance" />
-</div>
-<br><br>
 
 ### Pré-requisitos
 
@@ -54,21 +44,8 @@ $ npx expo start
 
 # Abra o QRcode com o app ExpoGo (diponível nas lojas de aplicativo)
 
-# Para rodar o servidor acesse este repositório: https://github.com/Carlosdanyell/dev-finance-server
+# Para rodar o servidor entre em contato
 
-# Clone este repositório
-$ git clone https://github.com/Carlosdanyell/dev-finance-server.git
-
-# Acesse a pasta do projeto no terminal/cmd
-$ cd dev-finance-server
-
-# Instale as dependências
-$ npm install
-
-# Execute a aplicação
-$ npm run dev
-
-#Agora configure adicione o IP da sua máquina no arquivo route.ts em dev-finance-app/src/utils/route.ts
 
 ```
 
