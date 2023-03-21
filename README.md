@@ -18,7 +18,7 @@
 - [ ] Conectar gastos do cartão
 - [ ] Geração de relatórios
 - [ ] Avisos sobre o orçamento
-  `<br><br>`
+  <br><br>
 
 
 ### Pré-requisitos
